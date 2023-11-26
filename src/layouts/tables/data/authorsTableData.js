@@ -22,11 +22,6 @@ import MDAvatar from "components/MDAvatar";
 import MDBadge from "components/MDBadge";
 import React, { useState, useEffect } from "react";
 
-// Images
-import team2 from "assets/images/team-2.jpg";
-import team3 from "assets/images/team-3.jpg";
-import team4 from "assets/images/team-4.jpg";
-
 export default function data() {
   const url = "https://quicksync.onrender.com/api/users/getusers";
   const [data, setData] = useState([]);

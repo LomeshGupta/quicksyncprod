@@ -17,6 +17,7 @@ Coded by www.creative-tim.com
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import React, { useState, useEffect } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 // QuickSync Pro React components
 import MDBox from "components/MDBox";
@@ -53,6 +54,14 @@ function Tables() {
   return (
     <DashboardLayout>
       <DashboardNavbar />
+      <div className="button-container" style={{ display: "flex" }}>
+        <a href="/additem" style={{ textDecoration: "none", marginRight: "2%" }}>
+          <p className="card-description">+ Add Users</p>
+        </a>
+        {/* <a href="/uom" style={{ textDecoration: "none", marginRight: "2%" }}>
+          <p className="card-description"> Unit of Measure </p>
+        </a> */}
+      </div>
       <MDBox pt={6} pb={3}>
         <Grid container spacing={6}>
           <Grid item xs={12}>
@@ -68,7 +77,7 @@ function Tables() {
                 coloredShadow="info"
               >
                 <MDTypography variant="h6" color="white">
-                  Users
+                  Users List
                 </MDTypography>
               </MDBox>
               <MDBox pt={3}>

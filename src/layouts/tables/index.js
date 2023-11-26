@@ -33,11 +33,11 @@ import authorsTableData from "layouts/tables/data/authorsTableData";
 // import projectsTableData from "layouts/tables/data/projectsTableData";
 
 function Tables() {
-  const { columns } = authorsTableData();
+  const { columns, rows } = authorsTableData();
   // const { columns: pColumns, rows: pRows } = projectsTableData();
 
   const url = "https://quicksync.onrender.com/api/users/getusers";
-  const [rows, setData] = useState([]);
+  const [data, setData] = useState([]);
 
   const fetchInfo = () => {
     return fetch(url)

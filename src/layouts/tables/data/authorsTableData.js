@@ -6,7 +6,7 @@
 =========================================================
 
 * Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2023 QuickSync Pro (https://www.creative-tim.com)
+* Copyright 2023 Creative Tim (https://www.creative-tim.com)
 
 Coded by www.creative-tim.com
 
@@ -62,27 +62,22 @@ export default function data() {
     </MDBox>
   );
 
-  return {
-    columns: [
-      { Header: "Username", accessor: "username", width: "15%", align: "left" },
-      { Header: "Full Name", accessor: "fullname", width: "35%", align: "left" },
-      { Header: "Email", accessor: "email", align: "left" },
-      { Header: "employed", accessor: "employed", align: "center" },
-      { Header: "action", accessor: "action", align: "center" },
-    ],
+  const row = [];
 
-    rows: [
-      {
-        author: <Author image={team2} name="John Michael" email="john@creative-tim.com" />,
-        function: <Job title="Manager" description="Organization" />,
+  {
+    data.map((user, index) => {
+      row.push({
+        user: <Author image={user.photo} name={user.fullname} email={user.email} />,
+        designation: <Job title="Consultant" description="Techincal" />,
+        username: user.username,
         status: (
           <MDBox ml={-1}>
-            <MDBadge badgeContent="online" color="success" variant="gradient" size="sm" />
+            <MDBadge badgeContent="offline" color="dark" variant="gradient" size="sm" />
           </MDBox>
         ),
         employed: (
-          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            23/04/18
+          <MDTypography component="p" href="#" variant="caption" color="text" fontWeight="medium">
+            14/09/23
           </MDTypography>
         ),
         action: (
@@ -90,7 +85,18 @@ export default function data() {
             Edit
           </MDTypography>
         ),
-      },
+      });
+    });
+  }
+  return {
+    columns: [
+      { Header: "user", accessor: "user", width: "25%", align: "left" },
+      { Header: "designation", accessor: "designation", align: "left" },
+      { Header: "User Name", accessor: "username", width: "15%", align: "left" },
+      { Header: "Status", accessor: "status", align: "left" },
+      { Header: "employed", accessor: "employed", align: "center" },
+      { Header: "action", accessor: "action", align: "center" },
     ],
+    rows: row,
   };
 }

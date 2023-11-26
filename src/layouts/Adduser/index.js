@@ -62,7 +62,7 @@ function Adduser() {
       <div>
         <Container style={{ marginTop: "5%" }}>
           <Row className="d-flex justify-content-center align-items-center">
-            <Col md={10}>
+            <Col md={15}>
               <div className="border border-2 border-primary"></div>
               <Card className="shadow px-4">
                 <MDBox

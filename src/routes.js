@@ -66,11 +66,6 @@ const routes = [
     route: "/users",
     component: <Users />,
   },
-  {
-    key: "users",
-    route: "/adduser",
-    component: <Adduser />,
-  },
   // {
   //   type: "collapse",
   //   name: "Billing",

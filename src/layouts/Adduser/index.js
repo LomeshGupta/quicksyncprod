@@ -17,6 +17,7 @@ Coded by www.creative-tim.com
 // import Grid from "@mui/material/Grid";
 // import Card from "@mui/material/Card";
 import React, { useState, useEffect, useRef } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
 
 // QuickSync Pro React components
@@ -32,6 +33,7 @@ import { Today } from "@mui/icons-material";
 
 function Adduser() {
   const [data, setData] = useState({});
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -41,11 +43,13 @@ function Adduser() {
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
       },
     });
     const result = await response.json();
     console.log(result);
+    if (response.ok) {
+      navigate("/users");
+    }
   };
 
   const [file, setFile] = useState();

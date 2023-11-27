@@ -18,6 +18,7 @@ import Grid from "@mui/material/Grid";
 
 // QuickSync Pro React components
 import MDBox from "components/MDBox";
+import React, { useState, useEffect } from "react";
 
 // QuickSync Pro React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
@@ -36,6 +37,21 @@ import Projects from "layouts/dashboard/components/Projects";
 import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
 
 function Dashboard() {
+  const url = "https://quicksync.onrender.com/api/users/getusers";
+  const [data, setData] = useState([]);
+  const [time, setTime] = useState(Date.now());
+
+  const fetchInfo = () => {
+    return fetch(url)
+      .then((res) => res.json())
+      .then((d) => setData(d))
+      .catch();
+  };
+
+  useEffect(() => {
+    fetchInfo();
+  }, []);
+
   const { sales, tasks } = reportsLineChartData;
 
   return (
@@ -62,8 +78,8 @@ function Dashboard() {
             <MDBox mb={1.5}>
               <ComplexStatisticsCard
                 icon="leaderboard"
-                title="Today's Users"
-                count="2,300"
+                title="Total Users"
+                count={data.length}
                 percentage={{
                   color: "success",
                   amount: "+3%",

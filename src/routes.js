@@ -38,6 +38,7 @@ Coded by www.creative-tim.com
 // QuickSync Pro React layouts
 import Dashboard from "layouts/dashboard";
 import Users from "layouts/tables";
+import Adduser from "./layouts/Adduser/index";
 import Billing from "layouts/billing";
 import RTL from "layouts/rtl";
 import Notifications from "layouts/notifications";
@@ -64,6 +65,11 @@ const routes = [
     icon: <Icon fontSize="small">table_view</Icon>,
     route: "/users",
     component: <Users />,
+  },
+  {
+    key: "users",
+    route: "/adduser",
+    component: <Adduser />,
   },
   // {
   //   type: "collapse",

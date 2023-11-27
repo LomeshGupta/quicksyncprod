@@ -31,6 +31,23 @@ import DataTable from "examples/Tables/DataTable";
 import { Today } from "@mui/icons-material";
 
 function Adduser() {
+  const [data, setData] = useState({});
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(JSON.stringify(data));
+    const response = await fetch("https://quicksync.onrender.com/api/users/register", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+    const result = await response.json();
+    console.log(result);
+  };
+
   const [file, setFile] = useState();
   // function handleChange(e) {
   //   console.log(e.target.files);
@@ -80,37 +97,61 @@ function Adduser() {
                   </MDTypography>
                 </MDBox>
                 <Card.Body>
-                  <Form>
+                  <Form onSubmit={handleSubmit}>
                     <div className="row">
                       <div className="col-md-6 grid-margin stretch-card">
                         <Form.Group className="mb-3" controlId="Name">
                           <Form.Label className="text-center">UserName</Form.Label>
-                          <Form.Control type="text" placeholder="Enter Username" />
+                          <Form.Control
+                            type="text"
+                            onChange={(e) => setData({ ...data, username: e.target.value })}
+                            placeholder="Enter Username"
+                          />
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="Name">
                           <Form.Label className="text-center">Full Name</Form.Label>
-                          <Form.Control type="text" placeholder="Enter Name" />
+                          <Form.Control
+                            type="text"
+                            onChange={(e) => setData({ ...data, fullname: e.target.value })}
+                            placeholder="Enter Name"
+                          />
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                           <Form.Label className="text-center">Email address</Form.Label>
-                          <Form.Control type="email" placeholder="Enter email" />
+                          <Form.Control
+                            type="email"
+                            onChange={(e) => setData({ ...data, email: e.target.value })}
+                            placeholder="Enter email"
+                          />
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                           <Form.Label className="text-center">Designation</Form.Label>
-                          <Form.Control type="text" placeholder="Enter Designation" />
+                          <Form.Control
+                            type="text"
+                            onChange={(e) => setData({ ...data, designation: e.target.value })}
+                            placeholder="Enter Designation"
+                          />
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                           <Form.Label className="text-center">Department</Form.Label>
-                          <Form.Control type="text" placeholder="Enter Department" />
+                          <Form.Control
+                            type="text"
+                            onChange={(e) => setData({ ...data, department: e.target.value })}
+                            placeholder="Enter Department"
+                          />
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formBasicPassword">
                           <Form.Label>Password</Form.Label>
-                          <Form.Control type="password" placeholder="Password" />
+                          <Form.Control
+                            type="password"
+                            onChange={(e) => setData({ ...data, password: e.target.value })}
+                            placeholder="Password"
+                          />
                         </Form.Group>
                       </div>
                       <div className="col-md-6 grid-margin stretch-card">
@@ -138,7 +179,11 @@ function Adduser() {
 
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                           <Form.Label className="text-center">Date of Employment</Form.Label>
-                          <Form.Control type="date" placeholder="Enter Date of Employment" />
+                          <Form.Control
+                            type="date"
+                            onChange={(e) => setData({ ...data, employed: e.target.value })}
+                            placeholder="Enter Date of Employment"
+                          />
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formBasicPassword">

@@ -28,6 +28,7 @@ import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
 import DataTable from "examples/Tables/DataTable";
+import { Col, Button, Row, Container, Form } from "react-bootstrap";
 
 // Data
 import authorsTableData from "layouts/tables/data/authorsTableData";
@@ -56,7 +57,9 @@ function Tables() {
       <DashboardNavbar />
       <div className="button-container" style={{ display: "flex" }}>
         <a href="/additem" style={{ textDecoration: "none", marginRight: "2%" }}>
-          <p className="card-description">+ Add Users</p>
+          <Button type="button" variant="primary" className="btn btn-default  ribbon">
+            + Add Users
+          </Button>
         </a>
         {/* <a href="/uom" style={{ textDecoration: "none", marginRight: "2%" }}>
           <p className="card-description"> Unit of Measure </p>

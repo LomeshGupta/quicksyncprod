@@ -38,19 +38,19 @@ function Tables() {
   const { columns, rows } = authorsTableData();
   // const { columns: pColumns, rows: pRows } = projectsTableData();
 
-  const url = "https://quicksync.onrender.com/api/users/getusers";
-  const [data, setData] = useState([]);
+  // const url = "https://quicksync.onrender.com/api/users/getusers";
+  // const [data, setData] = useState([]);
 
-  const fetchInfo = () => {
-    return fetch(url)
-      .then((res) => res.json())
-      .then((d) => setData(d))
-      .catch();
-  };
+  // const fetchInfo = () => {
+  //   return fetch(url)
+  //     .then((res) => res.json())
+  //     .then((d) => setData(d))
+  //     .catch();
+  // };
 
-  useEffect(() => {
-    fetchInfo();
-  }, []);
+  // useEffect(() => {
+  //   fetchInfo();
+  // }, []);
 
   return (
     <DashboardLayout>

@@ -21,10 +21,12 @@ import MDTypography from "components/MDTypography";
 import MDAvatar from "components/MDAvatar";
 import MDBadge from "components/MDBadge";
 import React, { useState, useEffect } from "react";
+import { stringify } from "stylis";
 
 export default function data() {
   const url = "https://quicksync.onrender.com/api/users/getusers";
   const [data, setData] = useState([]);
+  let [status, setStatus] = useState(null);
 
   const fetchInfo = () => {
     return fetch(url)
@@ -36,6 +38,41 @@ export default function data() {
   useEffect(() => {
     fetchInfo();
   }, []);
+
+  async function deleteUser(param) {
+    setStatus(null); // clear status on retrigger
+    try {
+      console.log(param);
+      // delete user endpoint
+      const res = await fetch("https://quicksync.onrender.com/api/users/deleteuser", {
+        method: "POST",
+        body: {
+          username: param,
+        },
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      setStatus({
+        type: "pass",
+        status: res.status,
+        message: `${param} deleted`,
+      });
+
+      // if deletion is successful reload the table after x seconds
+      setTimeout(function () {
+        fetchInfo();
+      }, 3000);
+    } catch (err) {
+      console.log("error occurred", err);
+      setStatus({
+        type: "fail",
+        message: err.message,
+      });
+    }
+  }
+
   const Author = ({ image, name, email }) => (
     <MDBox display="flex" alignItems="center" lineHeight={1}>
       <MDAvatar src={image} name={name} size="sm" />
@@ -76,8 +113,14 @@ export default function data() {
           </MDTypography>
         ),
         action: (
-          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            Edit
+          <MDTypography
+            component="button"
+            onClick={() => deleteUser(user.username)}
+            variant="caption"
+            color="text"
+            fontWeight="medium"
+          >
+            Delete
           </MDTypography>
         ),
       });

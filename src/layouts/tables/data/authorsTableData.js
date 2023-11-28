@@ -21,6 +21,7 @@ import MDTypography from "components/MDTypography";
 import MDAvatar from "components/MDAvatar";
 import MDBadge from "components/MDBadge";
 import React, { useState, useEffect } from "react";
+import { FaMinusCircle } from "react-icons/fa";
 import { stringify } from "stylis";
 
 export default function data() {
@@ -41,14 +42,14 @@ export default function data() {
 
   async function deleteUser(param) {
     setStatus(null); // clear status on retrigger
+
     try {
       console.log(param);
+      const obj = { username: param };
       // delete user endpoint
       const res = await fetch("https://quicksync.onrender.com/api/users/deleteuser", {
         method: "POST",
-        body: {
-          username: param,
-        },
+        body: JSON.stringify(obj),
         headers: {
           "Content-Type": "application/json",
         },
@@ -65,7 +66,7 @@ export default function data() {
         fetchInfo();
       }, 3000);
     } catch (err) {
-      console.log("error occurred", err);
+      // console.log("error occurred", err);
       setStatus({
         type: "fail",
         message: err.message,
@@ -117,10 +118,20 @@ export default function data() {
             component="button"
             onClick={() => deleteUser(user.username)}
             variant="caption"
-            color="text"
-            fontWeight="medium"
+            border="0"
+            borderRadius="50%"
+            boxShadow="3px 0px 5px rgba(81,67,21,0.8)"
+            opacity="0.8"
           >
-            Delete
+            <FaMinusCircle
+              style={{
+                fontSize: "200%",
+                borderRadius: "50%",
+                color: "#8B0000",
+                border: "0",
+                backgroundColor: "transparent",
+              }}
+            />
           </MDTypography>
         ),
       });

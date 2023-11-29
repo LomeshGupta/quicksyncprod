@@ -26,23 +26,28 @@ import { stringify } from "stylis";
 
 export default function data() {
   const url = "https://quicksync.onrender.com/api/users/getusers";
+  const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState([]);
   let [status, setStatus] = useState(null);
 
   const fetchInfo = () => {
     return fetch(url)
       .then((res) => res.json())
-      .then((d) => setData(d))
+      .then((d) => {
+        setData(d);
+        setIsLoading(false);
+      })
       .catch();
   };
 
   useEffect(() => {
+    setIsLoading(true);
     fetchInfo();
   }, []);
 
   async function deleteUser(param) {
     setStatus(null); // clear status on retrigger
-
+    setIsLoading(true);
     try {
       console.log(param);
       const obj = { username: param };
@@ -147,5 +152,6 @@ export default function data() {
       { Header: "action", accessor: "action", align: "center" },
     ],
     rows: row,
+    loading: isLoading,
   };
 }

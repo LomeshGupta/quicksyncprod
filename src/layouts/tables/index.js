@@ -16,8 +16,9 @@ Coded by www.creative-tim.com
 // @mui material components
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, CSSProperties } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import RiseLoader from "react-spinners/RiseLoader";
 
 // QuickSync Pro React components
 import MDBox from "components/MDBox";
@@ -35,7 +36,7 @@ import authorsTableData from "layouts/tables/data/authorsTableData";
 // import projectsTableData from "layouts/tables/data/projectsTableData";
 
 function Tables() {
-  const { columns, rows } = authorsTableData();
+  const { columns, rows, loading } = authorsTableData();
   // const { columns: pColumns, rows: pRows } = projectsTableData();
 
   // const url = "https://quicksync.onrender.com/api/users/getusers";
@@ -91,6 +92,24 @@ function Tables() {
                   showTotalEntries={true}
                   noEndBorder
                 />
+                {loading ? (
+                  <center
+                    style={{
+                      position: "fixed",
+                      justifyContent: "center",
+                      zIndex: "9",
+                      top: "0",
+                      left: "0",
+                      width: "100%",
+                      height: "100%",
+                      background: "black",
+                      opacity: "0.4",
+                    }}
+                  >
+                    <RiseLoader cssOverride={{ marginTop: "20%" }} color="#36d7b7" />
+                    {/* Render the fetched data here */}
+                  </center>
+                ) : null}
               </MDBox>
             </Card>
           </Grid>

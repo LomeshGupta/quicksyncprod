@@ -107,7 +107,6 @@ function Tables() {
                     }}
                   >
                     <RiseLoader cssOverride={{ marginTop: "20%" }} color="#36d7b7" />
-                    {/* Render the fetched data here */}
                   </center>
                 ) : null}
               </MDBox>

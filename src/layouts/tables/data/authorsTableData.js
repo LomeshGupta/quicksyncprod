@@ -1,27 +1,14 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/function-component-definition */
-/**
-=========================================================
-* Material Dashboard 2 React - v2.2.0
-=========================================================
 
-* Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-// Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import MDAvatar from "components/MDAvatar";
 import MDBadge from "components/MDBadge";
 import React, { useState, useEffect } from "react";
 import { FaMinusCircle } from "react-icons/fa";
+import { format } from "date-fns";
+import dateFormat from "dateformat";
 import { stringify } from "stylis";
 
 export default function data() {
@@ -106,8 +93,8 @@ export default function data() {
     data.map((user, index) => {
       row.push({
         user: <Author image={user.photo} name={user.fullname} email={user.email} />,
-        designation: <Job title="Consultant" description="Techincal" />,
-        username: user.username,
+        designation: <Job title={user.designation} description={user.department} />,
+        username: user.username.toUpperCase(),
         status: (
           <MDBox ml={-1}>
             <MDBadge badgeContent="offline" color="dark" variant="gradient" size="sm" />
@@ -115,7 +102,7 @@ export default function data() {
         ),
         employed: (
           <MDTypography component="p" href="#" variant="caption" color="text" fontWeight="medium">
-            14/09/23
+            {user.employed ? dateFormat(user.employed, "mmmm dS, yyyy") : null}
           </MDTypography>
         ),
         action: (

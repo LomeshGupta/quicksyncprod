@@ -13,6 +13,8 @@
     "url": "git+https://github.com/creativetimofficial/material-dashboard-react.git"
   },
   "dependencies": {
+    "@cloudinary/react": "^1.11.2",
+    "@cloudinary/url-gen": "^1.13.0",
     "@emotion/cache": "11.10.8",
     "@emotion/react": "11.10.8",
     "@emotion/styled": "11.10.8",

@@ -21,6 +21,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Cloudinary } from "@cloudinary/url-gen";
 
 // QuickSync Pro React components
 import MDBox from "components/MDBox";
@@ -40,12 +41,33 @@ function Adduser() {
   const [data, setData] = useState({});
   const [loading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const [image, setImage] = useState(null);
+  const [url, setUrl] = useState("");
 
   const handleSubmit = async (e) => {
     if (password.current.value === cPassword.current.value) {
       e.preventDefault();
       setIsLoading(true);
-      // console.log(JSON.stringify(data));
+      const data2 = new FormData();
+      data2.append("file", image);
+      data2.append("upload_preset", "rvz7sudp");
+      data2.append("cloud_name", "dnbral0xq");
+      data2.append("folder", "Cloudinary-React");
+
+      const resp = await fetch("https://api.cloudinary.com/v1_1/dnbral0xq/image/upload", {
+        method: "POST",
+        body: data2,
+      });
+      const res = await resp.json();
+      var pic = {
+        photo: res.secure_url,
+      };
+      data.photo = res.secure_url;
+      console.log(data.photo);
+      // JSON.parse(data).push(pic);
+      (e) => setData({ ...data, photo: res.secure_url });
+      console.log(res.secure_url);
+      console.log(JSON.stringify(data));
       const response = await fetch("https://quicksync.onrender.com/api/users/register", {
         method: "POST",
         body: JSON.stringify(data),
@@ -66,14 +88,10 @@ function Adduser() {
     }
   };
 
-  const [file, setFile] = useState();
-  // function handleChange(e) {
-  //   console.log(e.target.files);
-  //   setFile(URL.createObjectURL(e.target.files[0]));
-  // }
-
   function preview() {
     img.src = URL.createObjectURL(event.target.files[0]);
+    const file = event.target.files[0];
+    setImage(file);
   }
 
   (function () {

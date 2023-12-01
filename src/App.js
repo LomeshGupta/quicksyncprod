@@ -14,6 +14,7 @@ Coded by www.creative-tim.com
 */
 
 import { useState, useEffect, useMemo } from "react";
+import { Link } from "react-router-dom";
 
 // react-router components
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
@@ -193,7 +194,7 @@ export default function App() {
       <Routes>
         {getRoutes(routes)}
         <Route path="*" element={<Navigate to="/dashboard" />} />
-        <Route exact path="/additem" element={<Adduser />} />
+        {/* <Route exact path="/additem" element={<Adduser />} /> */}
       </Routes>
     </ThemeProvider>
   );

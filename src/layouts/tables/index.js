@@ -19,6 +19,7 @@ import Card from "@mui/material/Card";
 import React, { useState, useEffect, CSSProperties } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import RiseLoader from "react-spinners/RiseLoader";
+import { Link } from "react-router-dom";
 
 // QuickSync Pro React components
 import MDBox from "components/MDBox";
@@ -57,11 +58,13 @@ function Tables() {
     <DashboardLayout>
       <DashboardNavbar />
       <div className="button-container" style={{ display: "flex" }}>
-        <a href="/additem" style={{ textDecoration: "none", marginRight: "2%" }}>
-          <Button type="button" variant="primary" className="btn btn-default  ribbon">
-            + Add Users
-          </Button>
-        </a>
+        {
+          <Link to="/additem" style={{ textDecoration: "none", marginRight: "2%" }}>
+            <Button type="button" variant="primary" className="btn btn-default  ribbon">
+              + Add Users
+            </Button>
+          </Link>
+        }
         {/* <a href="/uom" style={{ textDecoration: "none", marginRight: "2%" }}>
           <p className="card-description"> Unit of Measure </p>
         </a> */}

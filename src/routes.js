@@ -66,6 +66,14 @@ const routes = [
     route: "/users",
     component: <Users />,
   },
+  {
+    type: "route",
+    name: "additem",
+    key: "additem",
+    icon: <Icon fontSize="small">route</Icon>,
+    route: "/additem",
+    component: <Adduser />,
+  },
   // {
   //   type: "collapse",
   //   name: "Billing",

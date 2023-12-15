@@ -57,6 +57,16 @@ function Tables() {
   return (
     <DashboardLayout>
       <DashboardNavbar />
+      {/* <iframe
+        src="https://www.retrogames.cc/embed/9160-metal-slug-3-ngm-2560.html"
+        width="600"
+        height="450"
+        frameBorder="no"
+        allowfullscreen="true"
+        webkitallowfullscreen="true"
+        mozallowfullscreen="true"
+        scrolling="no"
+      ></iframe> */}
       <div className="button-container" style={{ display: "flex" }}>
         {
           <Link to="/additem" style={{ textDecoration: "none", marginRight: "2%" }}>

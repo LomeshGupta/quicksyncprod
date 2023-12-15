@@ -19,6 +19,7 @@ import Grid from "@mui/material/Grid";
 // QuickSync Pro React components
 import MDBox from "components/MDBox";
 import React, { useState, useEffect } from "react";
+import Cookies from "js-cookie";
 
 // QuickSync Pro React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
@@ -35,11 +36,13 @@ import reportsLineChartData from "layouts/dashboard/data/reportsLineChartData";
 // Dashboard components
 import Projects from "layouts/dashboard/components/Projects";
 import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
+import { Navigate, useNavigate } from "react-router-dom";
 
 function Dashboard() {
   const url = "https://quicksync.onrender.com/api/users/getusers";
   const [data, setData] = useState([]);
   const [time, setTime] = useState(Date.now());
+  const navigate = useNavigate();
 
   const fetchInfo = () => {
     return fetch(url)
@@ -49,6 +52,9 @@ function Dashboard() {
   };
 
   useEffect(() => {
+    if (!Cookies.get("token")) {
+      navigate("/authentication/sign-in");
+    }
     fetchInfo();
   }, []);
 

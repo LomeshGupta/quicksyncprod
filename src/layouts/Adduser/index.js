@@ -45,46 +45,42 @@ function Adduser() {
   const [url, setUrl] = useState("");
 
   const handleSubmit = async (e) => {
-    if (password.current.value === cPassword.current.value) {
-      e.preventDefault();
-      setIsLoading(true);
-      const data2 = new FormData();
-      data2.append("file", image);
-      data2.append("upload_preset", "rvz7sudp");
-      data2.append("cloud_name", "dnbral0xq");
-      data2.append("folder", "Cloudinary-React");
+    e.preventDefault();
+    setIsLoading(true);
+    const data2 = new FormData();
+    data2.append("file", image);
+    data2.append("upload_preset", "rvz7sudp");
+    data2.append("cloud_name", "dnbral0xq");
+    data2.append("folder", "Cloudinary-React");
 
-      const resp = await fetch("https://api.cloudinary.com/v1_1/dnbral0xq/image/upload", {
-        method: "POST",
-        body: data2,
-      });
-      const res = await resp.json();
-      var pic = {
-        photo: res.secure_url,
-      };
-      data.photo = res.secure_url;
-      console.log(data.photo);
-      // JSON.parse(data).push(pic);
-      (e) => setData({ ...data, photo: res.secure_url });
-      console.log(res.secure_url);
-      console.log(JSON.stringify(data));
-      const response = await fetch("https://quicksync.onrender.com/api/users/register", {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const result = await response.json();
-      console.log(result);
-      setIsLoading(false);
-      if (response.ok) {
-        navigate("/users");
-      } else {
-        toast.error(result.message);
-      }
+    const resp = await fetch("https://api.cloudinary.com/v1_1/dnbral0xq/image/upload", {
+      method: "POST",
+      body: data2,
+    });
+    const res = await resp.json();
+    var pic = {
+      photo: res.secure_url,
+    };
+    data.photo = res.secure_url;
+    console.log(data.photo);
+    // JSON.parse(data).push(pic);
+    (e) => setData({ ...data, photo: res.secure_url });
+    console.log(res.secure_url);
+    console.log(JSON.stringify(data));
+    const response = await fetch("https://quicksync.onrender.com/api/users/register", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const result = await response.json();
+    console.log(result);
+    setIsLoading(false);
+    if (response.ok) {
+      navigate("/users");
     } else {
-      toast.error("Password Does not match");
+      toast.error(result.message);
     }
   };
 
@@ -232,7 +228,6 @@ function Adduser() {
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                           <Form.Label className="text-center"></Form.Label>
                           <Form.Control
-                            style={{ display: "none" }}
                             name="file"
                             type="file"
                             placeholder="Enter Department"
@@ -248,11 +243,6 @@ function Adduser() {
                             onChange={(e) => setData({ ...data, employed: e.target.value })}
                             placeholder="Enter Date of Employment"
                           />
-                        </Form.Group>
-
-                        <Form.Group className="mb-3" controlId="formBasicPassword">
-                          <Form.Label>Confirm Password</Form.Label>
-                          <Form.Control type="password" placeholder="Password" ref={cPassword} />
                         </Form.Group>
                       </div>
                       <div className="d-grid" style={{ position: "relative" }}>

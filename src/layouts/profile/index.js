@@ -25,6 +25,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 // QuickSync Pro React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
+import Cookies from "js-cookie";
 
 // QuickSync Pro React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";

@@ -68,6 +68,7 @@ function Basic() {
     Cookies.set("username", result.username);
     Cookies.set("id", result._id);
     Cookies.set("token", result.token);
+    Cookies.set("photo", result.photo);
     if (response.ok) {
       navigate("/");
     } else {

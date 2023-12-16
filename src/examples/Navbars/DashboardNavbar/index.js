@@ -27,6 +27,9 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import Icon from "@mui/material/Icon";
+import { Navigate, useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
+// import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
 
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
@@ -58,6 +61,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
   const [controller, dispatch] = useMaterialUIController();
   const { miniSidenav, transparentNavbar, fixedNavbar, openConfigurator, darkMode } = controller;
   const [openMenu, setOpenMenu] = useState(false);
+  const [openProfile, setOpenProfile] = useState(false);
   const route = useLocation().pathname.split("/").slice(1);
 
   useEffect(() => {
@@ -90,6 +94,9 @@ function DashboardNavbar({ absolute, light, isMini }) {
   const handleConfiguratorOpen = () => setOpenConfigurator(dispatch, !openConfigurator);
   const handleOpenMenu = (event) => setOpenMenu(event.currentTarget);
   const handleCloseMenu = () => setOpenMenu(false);
+  const handleOpenProfile = (event) => setOpenProfile(event.currentTarget);
+  const handleCloseProfile = () => setOpenProfile(false);
+  const navigate = useNavigate();
 
   // Render the notifications menu
   const renderMenu = () => (
@@ -107,6 +114,39 @@ function DashboardNavbar({ absolute, light, isMini }) {
       <NotificationItem icon={<Icon>email</Icon>} title="Check new messages" />
       <NotificationItem icon={<Icon>podcasts</Icon>} title="Manage Podcast sessions" />
       <NotificationItem icon={<Icon>shopping_cart</Icon>} title="Payment successfully completed" />
+    </Menu>
+  );
+  const url = "https://quicksync.onrender.com/api/users/logout";
+  const logouthandler = async (e) => {
+    const resp = await fetch(url, {
+      method: "GET",
+    });
+    const result = await resp.json();
+    console.log(result);
+    if (resp.ok) {
+      Cookies.remove("username", result.username);
+      Cookies.remove("id", result._id);
+      Cookies.remove("token", result.token);
+      navigate("/authentication/sign-in");
+    }
+  };
+
+  const renderProfile = () => (
+    <Menu
+      anchorEl={openProfile}
+      anchorReference={null}
+      anchorOrigin={{
+        vertical: "bottom",
+        horizontal: "left",
+      }}
+      open={Boolean(openProfile)}
+      onClose={handleCloseProfile}
+      sx={{ mt: 2 }}
+    >
+      <Link to="/profile">
+        <NotificationItem icon={<Icon>person</Icon>} title="Profile" />
+      </Link>
+      <NotificationItem icon={<Icon>logout</Icon>} onClick={logouthandler} title="Logout" />
     </Menu>
   );
 
@@ -139,12 +179,16 @@ function DashboardNavbar({ absolute, light, isMini }) {
               <MDInput label="Search here" />
             </MDBox>
             <MDBox color={light ? "white" : "inherit"}>
-              <Link to="/authentication/sign-in/basic">
-                <IconButton sx={navbarIconButton} size="small" disableRipple>
-                  <Icon sx={iconsStyle}>account_circle</Icon>
-                </IconButton>
-              </Link>
+              {renderProfile()}
               <IconButton
+                sx={navbarIconButton}
+                size="small"
+                disableRipple
+                onClick={handleOpenProfile}
+              >
+                <Icon sx={iconsStyle}>account_circle</Icon>
+              </IconButton>
+              {/* <IconButton
                 size="small"
                 disableRipple
                 color="inherit"
@@ -152,9 +196,9 @@ function DashboardNavbar({ absolute, light, isMini }) {
                 onClick={handleMiniSidenav}
               >
                 <Icon sx={iconsStyle} fontSize="medium">
-                  {miniSidenav ? "menu_open" : "menu"}
+                  {miniSidenav ? "menu open" : "menu"}
                 </Icon>
-              </IconButton>
+              </IconButton> */}
               <IconButton
                 size="small"
                 disableRipple
@@ -177,6 +221,17 @@ function DashboardNavbar({ absolute, light, isMini }) {
                 <Icon sx={iconsStyle}>notifications</Icon>
               </IconButton>
               {renderMenu()}
+              <IconButton
+                size="small"
+                disableRipple
+                color="inherit"
+                sx={navbarIconButton}
+                onClick={handleMiniSidenav}
+              >
+                <Icon sx={iconsStyle} fontSize="medium">
+                  {miniSidenav ? "menu open" : "menu"}
+                </Icon>
+              </IconButton>
             </MDBox>
           </MDBox>
         )}

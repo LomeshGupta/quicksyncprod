@@ -23,6 +23,7 @@ import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Icon from "@mui/material/Icon";
+import Cookies from "js-cookie";
 
 // QuickSync Pro React components
 import MDBox from "components/MDBox";
@@ -54,6 +55,7 @@ import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "co
 import brandWhite from "assets/images/logo-ct.png";
 import brandDark from "assets/images/logo-ct-dark.png";
 import Adduser from "./layouts/Adduser/index";
+import SignIn from "layouts/authentication/sign-in";
 
 export default function App() {
   const [controller, dispatch] = useMaterialUIController();
@@ -70,6 +72,7 @@ export default function App() {
   const [onMouseEnter, setOnMouseEnter] = useState(false);
   const [rtlCache, setRtlCache] = useState(null);
   const { pathname } = useLocation();
+  const token = Cookies.get("token");
 
   // Cache for the rtl
   useMemo(() => {
@@ -103,6 +106,7 @@ export default function App() {
   // Setting the dir attribute for the body element
   useEffect(() => {
     document.body.setAttribute("dir", direction);
+    token;
   }, [direction]);
 
   // Setting page scroll to 0 when changing the route
@@ -192,8 +196,9 @@ export default function App() {
       )}
       {layout === "vr" && <Configurator />}
       <Routes>
-        {getRoutes(routes)}
-        <Route path="*" element={<Navigate to="/dashboard" />} />
+        {Cookies.get("token") ? getRoutes(routes) : <Route exact path="*" element={<SignIn />} />}
+        {/* {getRoutes(routes)} */}
+        {/* <Route exact path="*" element={<Navigate to="/dashboard" />} /> */}
         {/* <Route exact path="/additem" element={<Adduser />} /> */}
       </Routes>
     </ThemeProvider>

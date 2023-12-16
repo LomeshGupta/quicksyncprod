@@ -52,9 +52,6 @@ function Dashboard() {
   };
 
   useEffect(() => {
-    if (!Cookies.get("token")) {
-      navigate("/authentication/sign-in");
-    }
     fetchInfo();
   }, []);
 

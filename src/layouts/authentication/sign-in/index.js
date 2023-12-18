@@ -15,6 +15,7 @@ Coded by www.creative-tim.com
 
 import React, { useState, useEffect, useRef } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
+import RiseLoader from "react-spinners/RiseLoader";
 
 // react-router-dom components
 import { Link } from "react-router-dom";
@@ -49,11 +50,12 @@ function Basic() {
   // const [rememberMe, setRememberMe] = useState(false);
 
   // const handleSetRememberMe = () => setRememberMe(!rememberMe);
-
+  const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState({});
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
+    setIsLoading(true);
     e.preventDefault();
     const response = await fetch("https://quicksync.onrender.com/api/users/login", {
       method: "POST",
@@ -70,8 +72,10 @@ function Basic() {
     Cookies.set("token", result.token);
     Cookies.set("photo", result.photo);
     if (response.ok) {
+      setIsLoading(false);
       navigate("/");
     } else {
+      setIsLoading(false);
       toast.error(result.message);
     }
   };
@@ -98,6 +102,9 @@ function Basic() {
             Sign in
           </MDTypography>
         </MDBox>
+        <div>
+          <ToastContainer style={{ fontSize: "70%" }} />
+        </div>
         <MDBox pt={4} pb={3} px={3}>
           <MDBox component="form" role="form" onSubmit={handleSubmit}>
             <MDBox mb={2}>
@@ -148,6 +155,23 @@ function Basic() {
                 </MDTypography>
               </MDTypography>
             </MDBox> */}
+            {isLoading ? (
+              <center
+                style={{
+                  position: "fixed",
+                  justifyContent: "center",
+                  zIndex: "9",
+                  top: "0",
+                  left: "0",
+                  width: "100%",
+                  height: "100%",
+                  background: "black",
+                  opacity: "0.4",
+                }}
+              >
+                <RiseLoader cssOverride={{ marginTop: "20%" }} color="#36d7b7" />
+              </center>
+            ) : null}
           </MDBox>
         </MDBox>
       </Card>

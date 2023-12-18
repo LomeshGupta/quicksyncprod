@@ -14,6 +14,7 @@ Coded by www.creative-tim.com
 */
 
 import { useState, useEffect } from "react";
+import RiseLoader from "react-spinners/RiseLoader";
 
 // react-router components
 import { useLocation, Link } from "react-router-dom";
@@ -57,6 +58,7 @@ import {
 } from "context";
 
 function DashboardNavbar({ absolute, light, isMini }) {
+  const [isLoading, setIsLoading] = useState(false);
   const [navbarType, setNavbarType] = useState();
   const [controller, dispatch] = useMaterialUIController();
   const { miniSidenav, transparentNavbar, fixedNavbar, openConfigurator, darkMode } = controller;
@@ -118,12 +120,14 @@ function DashboardNavbar({ absolute, light, isMini }) {
   );
   const url = "https://quicksync.onrender.com/api/users/logout";
   const logouthandler = async (e) => {
+    setIsLoading(true);
     const resp = await fetch(url, {
       method: "GET",
     });
     const result = await resp.json();
     console.log(result);
     if (resp.ok) {
+      setIsLoading(false);
       Cookies.remove("username", result.username);
       Cookies.remove("id", result._id);
       Cookies.remove("token", result.token);
@@ -173,6 +177,23 @@ function DashboardNavbar({ absolute, light, isMini }) {
         <MDBox color="inherit" mb={{ xs: 1, md: 0 }} sx={(theme) => navbarRow(theme, { isMini })}>
           <Breadcrumbs icon="home" title={route[route.length - 1]} route={route} light={light} />
         </MDBox>
+        {isLoading ? (
+          <center
+            style={{
+              position: "fixed",
+              justifyContent: "center",
+              zIndex: "9",
+              top: "0",
+              left: "0",
+              width: "100%",
+              height: "100%",
+              background: "black",
+              opacity: "0.4",
+            }}
+          >
+            <RiseLoader cssOverride={{ marginTop: "20%" }} color="#36d7b7" />
+          </center>
+        ) : null}
         {isMini ? null : (
           <MDBox sx={(theme) => navbarRow(theme, { isMini })}>
             <MDBox pr={1}>

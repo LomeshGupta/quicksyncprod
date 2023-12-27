@@ -14,6 +14,8 @@ Coded by www.creative-tim.com
 */
 
 import { useMemo, useEffect, useState } from "react";
+import React, { useRef } from "react";
+import { DownloadTableExcel } from "react-export-table-to-excel";
 
 // prop-types is a library for typechecking of props
 import PropTypes from "prop-types";
@@ -61,6 +63,8 @@ function DataTable({
     useSortBy,
     usePagination
   );
+
+  const tableRef = useRef(null);
 
   const {
     getTableProps,
@@ -149,6 +153,13 @@ function DataTable({
     <TableContainer sx={{ boxShadow: "none" }}>
       {entriesPerPage || canSearch ? (
         <MDBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
+          {/* <DownloadTableExcel
+            filename="users table"
+            sheet="users"
+            currentTableRef={tableRef.current}
+          >
+            <button> Export excel </button>
+          </DownloadTableExcel> */}
           {entriesPerPage && (
             <MDBox display="flex" alignItems="center">
               <Autocomplete
@@ -183,7 +194,7 @@ function DataTable({
           )}
         </MDBox>
       ) : null}
-      <Table {...getTableProps()}>
+      <Table {...getTableProps()} ref={tableRef}>
         <MDBox component="thead">
           {headerGroups.map((headerGroup, key) => (
             <TableRow key={key} {...headerGroup.getHeaderGroupProps()}>

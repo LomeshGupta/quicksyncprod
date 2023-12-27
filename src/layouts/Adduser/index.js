@@ -181,6 +181,15 @@ function Adduser() {
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formBasicEmail">
+                          <Form.Label className="text-center">Phone No.</Form.Label>
+                          <Form.Control
+                            type="text"
+                            onChange={(e) => setData({ ...data, phone: e.target.value })}
+                            placeholder="Enter Phone No."
+                          />
+                        </Form.Group>
+
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
                           <Form.Label className="text-center">Designation</Form.Label>
                           <Form.Control
                             type="text"

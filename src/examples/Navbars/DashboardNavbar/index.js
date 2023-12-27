@@ -21,6 +21,7 @@ import { useLocation, Link } from "react-router-dom";
 
 // prop-types is a library for typechecking of props.
 import PropTypes from "prop-types";
+import { ToastContainer, toast } from "react-toastify";
 
 // @material-ui core components
 import AppBar from "@mui/material/AppBar";
@@ -128,9 +129,17 @@ function DashboardNavbar({ absolute, light, isMini }) {
     console.log(result);
     if (resp.ok) {
       setIsLoading(false);
-      Cookies.remove("username", result.username);
-      Cookies.remove("id", result._id);
-      Cookies.remove("token", result.token);
+      toast.success(result.message);
+      Cookies.remove("username");
+      Cookies.remove("id");
+      Cookies.remove("photo");
+      Cookies.remove("token");
+      Cookies.remove("fullname");
+      Cookies.remove("employed");
+      Cookies.remove("email");
+      Cookies.remove("designation");
+      Cookies.remove("department");
+      Cookies.remove("phone");
       navigate("/authentication/sign-in");
     }
   };
@@ -254,6 +263,9 @@ function DashboardNavbar({ absolute, light, isMini }) {
                 </Icon>
               </IconButton>
             </MDBox>
+            <div>
+              <ToastContainer style={{ fontSize: "70%" }} />
+            </div>
           </MDBox>
         )}
       </Toolbar>

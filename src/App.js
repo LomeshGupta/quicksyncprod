@@ -196,7 +196,16 @@ export default function App() {
       )}
       {layout === "vr" && <Configurator />}
       <Routes>
-        {Cookies.get("token") ? getRoutes(routes) : <Route exact path="*" element={<SignIn />} />}
+        {Cookies.get("token") ? (
+          <Route exact path="*" element={<Navigate to="/dashboard" />} />
+        ) : (
+          <Route exact path="/authentication/sign-in" element={<SignIn />} />
+        )}
+        {Cookies.get("token") ? (
+          getRoutes(routes)
+        ) : (
+          <Route exact path="*" element={<Navigate to="/authentication/sign-in" />} />
+        )}
         {/* {getRoutes(routes)} */}
         {/* <Route exact path="*" element={<Navigate to="/dashboard" />} /> */}
         {/* <Route exact path="/additem" element={<Adduser />} /> */}

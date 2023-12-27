@@ -60,14 +60,6 @@ const routes = [
     component: <Dashboard />,
   },
   {
-    type: "route",
-    name: "Dashboard",
-    key: "dashboard",
-    icon: <Icon fontSize="small">dashboard</Icon>,
-    route: "*",
-    component: <Navigate to={"/dashboard"} />,
-  },
-  {
     type: "collapse",
     name: "Users",
     key: "users",
@@ -107,14 +99,14 @@ const routes = [
     route: "/profile",
     component: <Profile />,
   },
-  {
-    type: "route",
-    name: "Sign In",
-    key: "sign-in",
-    icon: <Icon fontSize="small">login</Icon>,
-    route: "/authentication/sign-in",
-    component: <SignIn />,
-  },
+  // {
+  //   type: "route",
+  //   name: "Sign In",
+  //   key: "sign-in",
+  //   icon: <Icon fontSize="small">login</Icon>,
+  //   route: "/authentication/sign-in",
+  //   component: <SignIn />,
+  // },
   // {
   //   type: "collapse",
   //   name: "Sign Up",

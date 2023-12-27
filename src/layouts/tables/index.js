@@ -16,10 +16,11 @@ Coded by www.creative-tim.com
 // @mui material components
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
-import React, { useState, useEffect, CSSProperties } from "react";
+import React, { useState, useEffect, CSSProperties, useRef } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import RiseLoader from "react-spinners/RiseLoader";
 import { Link } from "react-router-dom";
+import { DownloadTableExcel } from "react-export-table-to-excel";
 
 // QuickSync Pro React components
 import MDBox from "components/MDBox";
@@ -38,6 +39,7 @@ import authorsTableData from "layouts/tables/data/authorsTableData";
 
 function Tables() {
   const { columns, rows, loading } = authorsTableData();
+  const tableRef = useRef(null);
   // const { columns: pColumns, rows: pRows } = projectsTableData();
 
   // const url = "https://quicksync.onrender.com/api/users/getusers";
@@ -104,6 +106,7 @@ function Tables() {
                   entriesPerPage={true}
                   showTotalEntries={true}
                   noEndBorder
+                  ref={tableRef}
                 />
                 {loading ? (
                   <center

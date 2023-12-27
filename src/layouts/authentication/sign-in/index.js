@@ -71,6 +71,12 @@ function Basic() {
     Cookies.set("id", result._id);
     Cookies.set("token", result.token);
     Cookies.set("photo", result.photo);
+    Cookies.set("fullname", result.fullname);
+    Cookies.set("employed", result.employed);
+    Cookies.set("email", result.email);
+    Cookies.set("designation", result.designation);
+    Cookies.set("department", result.department);
+    Cookies.set("phone", result.phone);
     if (response.ok) {
       setIsLoading(false);
       navigate("/");

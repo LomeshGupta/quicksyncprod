@@ -66,6 +66,24 @@ const routes = [
     icon: <Icon fontSize="small">table_view</Icon>,
     route: "/users",
     component: <Users />,
+    // child: [
+    //   {
+    //     type: "route",
+    //     name: "additem",
+    //     key: "additem",
+    //     icon: <Icon fontSize="small">route</Icon>,
+    //     route: "/additem",
+    //     component: <Adduser />,
+    //   },
+    //   {
+    //     type: "collapse",
+    //     name: "Users",
+    //     key: "users",
+    //     icon: <Icon fontSize="small">table_view</Icon>,
+    //     route: "/users",
+    //     component: <Users />,
+    //   },
+    // ],
   },
   {
     type: "route",

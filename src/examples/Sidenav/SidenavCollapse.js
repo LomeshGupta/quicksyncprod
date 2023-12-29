@@ -17,10 +17,12 @@ Coded by www.creative-tim.com
 import PropTypes from "prop-types";
 
 // @mui material components
+import { Collapse, List, ListItemButton, Typography } from "@mui/material";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Icon from "@mui/material/Icon";
+// import { Collapse } from "react-collapse";
 
 // QuickSync Pro React components
 import MDBox from "components/MDBox";

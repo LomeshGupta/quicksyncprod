@@ -54,7 +54,7 @@ import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "co
 // Images
 import brandWhite from "assets/images/logo-ct.png";
 import brandDark from "assets/images/logo-ct-dark.png";
-import Adduser from "./layouts/Adduser/index";
+import Adduser from "./layouts/Adduser/indexbackup";
 import SignIn from "layouts/authentication/sign-in";
 
 export default function App() {

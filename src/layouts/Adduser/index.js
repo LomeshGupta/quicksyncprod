@@ -25,7 +25,10 @@ import { Cloudinary } from "@cloudinary/url-gen";
 
 // QuickSync Pro React components
 import MDBox from "components/MDBox";
+import MDButton from "components/MDButton";
+import MDInput from "components/MDInput";
 import MDTypography from "components/MDTypography";
+import { useMaterialUIController } from "context";
 
 // QuickSync Pro React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
@@ -34,15 +37,17 @@ import RiseLoader from "react-spinners/RiseLoader";
 import Footer from "examples/Footer";
 import DataTable from "examples/Tables/DataTable";
 import { Today } from "@mui/icons-material";
+import { right } from "@cloudinary/url-gen/qualifiers/textAlignment";
 
 function Adduser() {
-  const password = useRef();
-  const cPassword = useRef();
+  const [controller] = useMaterialUIController();
+  const { darkMode } = controller;
+  const [stage, setstage] = useState(null);
   const [data, setData] = useState({});
+  const [size, setSize] = useState(false);
   const [loading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const [image, setImage] = useState(null);
-  const [url, setUrl] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -84,19 +89,19 @@ function Adduser() {
     }
   };
 
+  const nextok = () => setstage(stage + 1);
+  const prev = () => setstage(stage - 1);
+
   function preview() {
+    const img = document.getElementById("img");
     img.src = URL.createObjectURL(event.target.files[0]);
     const file = event.target.files[0];
     setImage(file);
   }
 
-  (function () {
-    $("#file").change(function (event) {
-      var x = URL.createObjectURL(event.target.files[0]);
-      $("#upload-img").attr("src", x);
-      console.log(event);
-    });
-  });
+  useEffect(() => {
+    setstage(1);
+  }, []);
 
   const inputRef = useRef(null);
 
@@ -111,8 +116,8 @@ function Adduser() {
       <div>
         <Container style={{ marginTop: "5%" }}>
           <Row className="d-flex justify-content-center align-items-center">
-            <Col md={15}>
-              <div className="border border-2 border-primary">
+            <Col md={8} style={{ borderRadius: "40%" }}>
+              <div>
                 {loading ? (
                   <center
                     style={{
@@ -131,7 +136,15 @@ function Adduser() {
                   </center>
                 ) : null}
               </div>
-              <Card className="shadow px-4">
+              <MDBox
+                color="white"
+                bgColor={darkMode ? "dark" : "white"}
+                variant="gradient"
+                borderRadius="lg"
+                shadow="lg"
+                opacity={2}
+                p={2}
+              >
                 <MDBox
                   mx={2}
                   mt={-3}
@@ -149,120 +162,331 @@ function Adduser() {
                     <ToastContainer style={{ fontSize: "70%" }} />
                   </div>
                 </MDBox>
-                <Card.Body>
+                <MDBox
+                  color="white"
+                  bgColor={darkMode ? "dark" : "white"}
+                  variant="gradient"
+                  borderRadius="lg"
+                  opacity={2}
+                >
                   <Form onSubmit={handleSubmit}>
-                    <div className="row">
-                      <div className="col-md-6 grid-margin stretch-card">
-                        <Form.Group className="mb-3" controlId="Name">
-                          <Form.Label className="text-center">UserName</Form.Label>
-                          <Form.Control
-                            type="text"
-                            onChange={(e) => setData({ ...data, username: e.target.value })}
-                            placeholder="Enter Username"
-                          />
-                        </Form.Group>
-
-                        <Form.Group className="mb-3" controlId="Name">
-                          <Form.Label className="text-center">Full Name</Form.Label>
-                          <Form.Control
-                            type="text"
-                            onChange={(e) => setData({ ...data, fullname: e.target.value })}
-                            placeholder="Enter Name"
-                          />
-                        </Form.Group>
-
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                          <Form.Label className="text-center">Email address</Form.Label>
-                          <Form.Control
-                            type="email"
-                            onChange={(e) => setData({ ...data, email: e.target.value })}
-                            placeholder="Enter email"
-                          />
-                        </Form.Group>
-
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                          <Form.Label className="text-center">Phone No.</Form.Label>
-                          <Form.Control
-                            type="text"
-                            onChange={(e) => setData({ ...data, phone: e.target.value })}
-                            placeholder="Enter Phone No."
-                          />
-                        </Form.Group>
-
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                          <Form.Label className="text-center">Designation</Form.Label>
-                          <Form.Control
-                            type="text"
-                            onChange={(e) => setData({ ...data, designation: e.target.value })}
-                            placeholder="Enter Designation"
-                          />
-                        </Form.Group>
-
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                          <Form.Label className="text-center">Department</Form.Label>
-                          <Form.Control
-                            type="text"
-                            onChange={(e) => setData({ ...data, department: e.target.value })}
-                            placeholder="Enter Department"
-                          />
-                        </Form.Group>
-
-                        <Form.Group className="mb-3" controlId="formBasicPassword">
-                          <Form.Label>Password</Form.Label>
-                          <Form.Control
-                            type="password"
-                            onChange={(e) => setData({ ...data, password: e.target.value })}
-                            placeholder="Password"
-                            ref={password}
-                          />
-                        </Form.Group>
-                      </div>
-                      <div className="col-md-6 grid-margin stretch-card">
-                        <Form.Group
-                          className="mb-3"
-                          controlId="formBasicEmail"
-                          style={{ textAlign: "center", paddingTop: "5%" }}
-                        >
-                          <img
-                            id="img"
-                            style={{ borderRadius: "100%" }}
-                            width={"55%"}
-                            height={"30%"}
-                            src={
-                              "https://w7.pngwing.com/pngs/498/275/png-transparent-silhouette-user-person-silhouette-cdr-animals-head.png"
-                            }
-                            onClick={handleClick}
-                          />
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                          <Form.Label className="text-center"></Form.Label>
-                          <Form.Control
-                            name="file"
-                            type="file"
-                            placeholder="Enter Department"
-                            onChange={preview}
-                            ref={inputRef}
-                          />
-                        </Form.Group>
-
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                          <Form.Label className="text-center">Date of Employment</Form.Label>
-                          <Form.Control
-                            type="date"
-                            onChange={(e) => setData({ ...data, employed: e.target.value })}
-                            placeholder="Enter Date of Employment"
-                          />
-                        </Form.Group>
-                      </div>
-                      <div className="d-grid" style={{ position: "relative" }}>
-                        <Button variant="primary" type="submit">
-                          Add User
-                        </Button>
-                      </div>
-                    </div>
+                    {stage === 1 ? (
+                      <MDBox>
+                        <MDBox lineHeight={1} textAlign="left" style={{ marginTop: "4%" }}>
+                          <MDTypography
+                            display="block"
+                            variant="caption"
+                            color="text"
+                            fontWeight="bold"
+                            fontSize="20px"
+                          >
+                            User Information
+                          </MDTypography>
+                          <MDTypography variant="caption">Mandatory informations</MDTypography>
+                        </MDBox>
+                        <MDBox style={{ marginTop: "2%" }}>
+                          <MDBox>
+                            &nbsp;
+                            <MDInput
+                              id="username"
+                              variant="standard"
+                              label="User Name"
+                              type="text"
+                              style={{ width: "45%" }}
+                              onChange={(e) => setData({ ...data, username: e.target.value })}
+                              defaultValue={data.username ? data.username : null}
+                              required
+                            />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <MDInput
+                              variant="standard"
+                              label="Full Name"
+                              style={{ width: "45%" }}
+                              onChange={(e) => setData({ ...data, fullname: e.target.value })}
+                              defaultValue={data.fullname ? data.fullname : null}
+                            />
+                          </MDBox>
+                          <MDBox>
+                            &nbsp;
+                            <MDInput
+                              variant="standard"
+                              label="Email Adress"
+                              style={{ width: "45%", marginTop: "4%" }}
+                              onChange={(e) => setData({ ...data, email: e.target.value })}
+                              defaultValue={data.email ? data.email : null}
+                            />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <MDInput
+                              variant="standard"
+                              label="Phone No."
+                              style={{ width: "45%", marginTop: "4%" }}
+                              onChange={(e) => setData({ ...data, phone: e.target.value })}
+                              defaultValue={data.phone ? data.phone : null}
+                            />
+                          </MDBox>
+                          <MDBox>
+                            &nbsp;
+                            <MDInput
+                              variant="standard"
+                              type="password"
+                              label="Password"
+                              style={{ width: "45%", marginTop: "4%" }}
+                              onChange={(e) => setData({ ...data, password: e.target.value })}
+                              defaultValue={data.password ? data.password : null}
+                            />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <MDInput
+                              variant="standard"
+                              label="Confirm Password"
+                              style={{ width: "45%", marginTop: "4%" }}
+                            />
+                          </MDBox>
+                          <MDBox style={{ marginTop: "4%" }} textAlign="right ">
+                            <MDButton variant="gradient" color="dark" size="large" onClick={nextok}>
+                              Next
+                            </MDButton>
+                            &nbsp;&nbsp;
+                          </MDBox>
+                        </MDBox>
+                      </MDBox>
+                    ) : null}{" "}
+                    {stage === 2 ? (
+                      <MDBox>
+                        <MDBox lineHeight={1} textAlign="left" style={{ marginTop: "4%" }}>
+                          <MDTypography
+                            display="block"
+                            variant="caption"
+                            color="text"
+                            fontWeight="bold"
+                            fontSize="20px"
+                          >
+                            Address
+                          </MDTypography>
+                          <MDTypography variant="caption">(Optional Information)</MDTypography>
+                        </MDBox>
+                        <MDBox>
+                          <MDBox>
+                            &nbsp;
+                            <MDInput
+                              variant="standard"
+                              label="Address 1"
+                              style={{ width: "100%" }}
+                            />
+                          </MDBox>
+                          <MDBox>
+                            &nbsp;
+                            <MDInput
+                              variant="standard"
+                              label="Address 2"
+                              style={{ width: "100%" }}
+                            />
+                          </MDBox>
+                          <MDBox>
+                            &nbsp;
+                            <MDInput
+                              variant="standard"
+                              label="City"
+                              style={{ width: "40%", marginTop: "4%" }}
+                            />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <MDInput variant="standard" label="State" style={{ marginTop: "4%" }} />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <MDInput
+                              variant="standard"
+                              label="Pin Code"
+                              style={{ marginTop: "4%" }}
+                            />
+                          </MDBox>
+                          <MDBox style={{ marginTop: "4%" }} textAlign="right ">
+                            <MDButton
+                              size="large"
+                              variant="gradient"
+                              color="secondary"
+                              onClick={prev}
+                            >
+                              Back
+                            </MDButton>
+                            &nbsp;&nbsp;&nbsp;
+                            <MDButton variant="gradient" color="dark" size="large" onClick={nextok}>
+                              Next
+                            </MDButton>
+                            &nbsp;&nbsp;
+                          </MDBox>
+                        </MDBox>
+                      </MDBox>
+                    ) : null}
+                    {stage === 3 ? (
+                      <MDBox>
+                        <MDBox lineHeight={1} textAlign="left" style={{ marginTop: "4%" }}>
+                          <MDTypography
+                            display="block"
+                            variant="caption"
+                            color="text"
+                            fontWeight="bold"
+                            fontSize="20px"
+                          >
+                            Social
+                          </MDTypography>
+                          <MDTypography variant="caption">(Optional Information)</MDTypography>
+                        </MDBox>
+                        <MDBox>
+                          <MDBox>
+                            &nbsp;
+                            <MDInput
+                              variant="standard"
+                              label="Instagram Handle"
+                              style={{ width: "100%" }}
+                            />
+                          </MDBox>
+                          <MDBox>
+                            &nbsp;
+                            <MDInput
+                              variant="standard"
+                              label="Facebook Handle"
+                              style={{ width: "100%" }}
+                            />
+                          </MDBox>
+                          <MDBox>
+                            &nbsp;
+                            <MDInput
+                              variant="standard"
+                              label="Twitter Handle"
+                              style={{ width: "100%" }}
+                            />
+                          </MDBox>
+                          <MDBox style={{ marginTop: "4%" }} textAlign="right ">
+                            <MDButton
+                              size="large"
+                              variant="gradient"
+                              color="secondary"
+                              onClick={prev}
+                            >
+                              Back
+                            </MDButton>
+                            &nbsp;&nbsp;&nbsp;
+                            <MDButton variant="gradient" color="dark" size="large" onClick={nextok}>
+                              Next
+                            </MDButton>
+                            &nbsp;&nbsp;
+                          </MDBox>
+                        </MDBox>
+                      </MDBox>
+                    ) : null}
+                    {stage === 4 ? (
+                      <MDBox>
+                        <MDBox lineHeight={1} textAlign="left" style={{ marginTop: "4%" }}>
+                          <MDTypography
+                            display="block"
+                            variant="caption"
+                            color="text"
+                            fontWeight="bold"
+                            fontSize="20px"
+                          >
+                            Designation
+                          </MDTypography>
+                          <MDTypography variant="caption">(Mandatory Information)</MDTypography>
+                        </MDBox>
+                        <MDBox style={{ marginTop: "2%" }}>
+                          <MDBox>
+                            &nbsp;
+                            <MDInput
+                              variant="standard"
+                              label="Designation"
+                              type="text"
+                              style={{ width: "30%" }}
+                              onChange={(e) => setData({ ...data, designation: e.target.value })}
+                              defaultValue={data.designation ? data.designation : null}
+                            />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <MDInput
+                              variant="standard"
+                              label="Department"
+                              style={{ width: "30%" }}
+                              onChange={(e) => setData({ ...data, department: e.target.value })}
+                              defaultValue={data.department ? data.department : null}
+                            />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <MDInput
+                              variant="standard"
+                              label="Employment Date"
+                              type="date"
+                              style={{ width: "20%" }}
+                              onChange={(e) => setData({ ...data, employed: e.target.value })}
+                              defaultValue={data.employed ? data.employed : "2000-01-01"}
+                              // value="2022-03-25"
+                            />
+                          </MDBox>
+                          <MDBox style={{ marginTop: "4%" }} textAlign="right ">
+                            <MDButton
+                              size="large"
+                              variant="gradient"
+                              color="secondary"
+                              onClick={prev}
+                            >
+                              Back
+                            </MDButton>
+                            &nbsp;&nbsp;&nbsp;
+                            <MDButton variant="gradient" color="dark" size="large" onClick={nextok}>
+                              Next
+                            </MDButton>
+                            &nbsp;&nbsp;
+                          </MDBox>
+                        </MDBox>
+                      </MDBox>
+                    ) : null}
+                    {stage === 5 ? (
+                      <MDBox>
+                        <MDBox lineHeight={1} textAlign="left" style={{ marginTop: "4%" }}>
+                          <MDTypography
+                            display="block"
+                            variant="caption"
+                            color="text"
+                            fontWeight="bold"
+                            fontSize="20px"
+                          >
+                            Profile Pic
+                          </MDTypography>
+                          <MDTypography variant="caption">(Optional Information)</MDTypography>
+                        </MDBox>
+                        <MDBox style={{ marginTop: "4%" }}>
+                          <MDBox>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <img
+                              id="img"
+                              style={{ borderRadius: "100%" }}
+                              width={"30%"}
+                              height={"30%"}
+                              src={
+                                "https://w7.pngwing.com/pngs/498/275/png-transparent-silhouette-user-person-silhouette-cdr-animals-head.png"
+                              }
+                              onClick={handleClick}
+                            />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input
+                              type="file"
+                              style={{ width: "30%", marginTop: "12%" }}
+                              onChange={preview}
+                              ref={inputRef}
+                            />
+                          </MDBox>
+                          <MDBox style={{ marginTop: "2%" }} textAlign="right ">
+                            <MDButton
+                              variant="gradient"
+                              color="dark"
+                              size="large"
+                              onClick={handleSubmit}
+                            >
+                              Submit
+                            </MDButton>
+                            &nbsp;&nbsp;
+                          </MDBox>
+                        </MDBox>
+                      </MDBox>
+                    ) : null}
                   </Form>
-                </Card.Body>
-              </Card>
+                </MDBox>
+              </MDBox>
             </Col>
           </Row>
         </Container>

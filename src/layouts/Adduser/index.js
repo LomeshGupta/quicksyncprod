@@ -44,7 +44,6 @@ function Adduser() {
   const { darkMode } = controller;
   const [stage, setstage] = useState(null);
   const [data, setData] = useState({});
-  const [size, setSize] = useState(false);
   const [loading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const [image, setImage] = useState(null);

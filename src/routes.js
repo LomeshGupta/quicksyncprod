@@ -40,6 +40,7 @@ import Dashboard from "layouts/dashboard";
 import Users from "layouts/tables";
 import Adduser from "./layouts/Adduser/index";
 import Billing from "layouts/billing";
+import Edit from "./layouts/Edituser";
 import RTL from "layouts/rtl";
 import Notifications from "layouts/notifications";
 import Profile from "layouts/profile";
@@ -49,6 +50,7 @@ import SignUp from "layouts/authentication/sign-up";
 // @mui icons
 import Icon from "@mui/material/Icon";
 import { Navigate } from "react-router-dom";
+import Bill from "layouts/billing/components/Bill";
 
 const routes = [
   {
@@ -93,14 +95,14 @@ const routes = [
     route: "/additem",
     component: <Adduser />,
   },
-  // {
-  //   type: "collapse",
-  //   name: "Billing",
-  //   key: "billing",
-  //   icon: <Icon fontSize="small">receipt_long</Icon>,
-  //   route: "/billing",
-  //   component: <Billing />,
-  // },
+  {
+    type: "route",
+    name: "editprofile",
+    key: "editprofile",
+    icon: <Icon fontSize="small"></Icon>,
+    route: "/editprofile",
+    component: <Edit />,
+  },
   // {
   //   type: "collapse",
   //   name: "Notifications",

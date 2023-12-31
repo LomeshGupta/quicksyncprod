@@ -2,11 +2,11 @@
 /* eslint-disable react/function-component-definition */
 /**
 =========================================================
-* QuickSync Pro React - v2.2.0
+* Material Dashboard 2 React - v2.2.0
 =========================================================
 
 * Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2023 QuickSync Pro (https://www.creative-tim.com)
+* Copyright 2023 Creative Tim (https://www.creative-tim.com)
 
 Coded by www.creative-tim.com
 
@@ -18,7 +18,7 @@ Coded by www.creative-tim.com
 // @mui material components
 import Tooltip from "@mui/material/Tooltip";
 
-// QuickSync Pro React components
+// Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import MDAvatar from "components/MDAvatar";

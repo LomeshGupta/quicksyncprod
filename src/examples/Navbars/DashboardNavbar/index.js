@@ -15,6 +15,7 @@ Coded by www.creative-tim.com
 
 import { useState, useEffect } from "react";
 import RiseLoader from "react-spinners/RiseLoader";
+import Switch from "@mui/material/Switch";
 
 // react-router components
 import { useLocation, Link } from "react-router-dom";
@@ -36,6 +37,15 @@ import Cookies from "js-cookie";
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 import MDInput from "components/MDInput";
+import {
+  // useMaterialUIController,
+  // setOpenConfigurator,
+  setTransparentSidenav,
+  setWhiteSidenav,
+  setFixedNavbar,
+  setSidenavColor,
+  setDarkMode,
+} from "context";
 
 // Material Dashboard 2 React example components
 import Breadcrumbs from "examples/Breadcrumbs";
@@ -176,6 +186,8 @@ function DashboardNavbar({ absolute, light, isMini }) {
     },
   });
 
+  const handleDarkMode = () => setDarkMode(dispatch, !darkMode);
+
   return (
     <AppBar
       position={absolute ? "absolute" : navbarType}
@@ -229,15 +241,17 @@ function DashboardNavbar({ absolute, light, isMini }) {
                   {miniSidenav ? "menu open" : "menu"}
                 </Icon>
               </IconButton> */}
-              <IconButton
-                size="small"
-                disableRipple
-                color="inherit"
-                sx={navbarIconButton}
-                onClick={handleConfiguratorOpen}
-              >
-                <Icon sx={iconsStyle}>settings</Icon>
-              </IconButton>
+              <Link to="/editprofile">
+                <IconButton
+                  size="small"
+                  disableRipple
+                  color="inherit"
+                  sx={navbarIconButton}
+                  // onClick={handleConfiguratorOpen}
+                >
+                  <Icon sx={iconsStyle}>settings</Icon>
+                </IconButton>
+              </Link>
               <IconButton
                 size="small"
                 disableRipple
@@ -262,6 +276,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
                   {miniSidenav ? "menu open" : "menu"}
                 </Icon>
               </IconButton>
+              {/* <Switch checked={darkMode} onChange={handleDarkMode} /> */}
             </MDBox>
             <div>
               <ToastContainer style={{ fontSize: "70%" }} />

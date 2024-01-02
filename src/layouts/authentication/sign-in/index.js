@@ -67,16 +67,16 @@ function Basic() {
     const result = await response.json();
     console.log(result);
     // setIsLoading(false);
-    Cookies.set("username", result.username);
-    Cookies.set("id", result._id);
-    Cookies.set("token", result.token);
-    Cookies.set("photo", result.photo);
-    Cookies.set("fullname", result.fullname);
-    Cookies.set("employed", result.employed);
-    Cookies.set("email", result.email);
-    Cookies.set("designation", result.designation);
-    Cookies.set("department", result.department);
-    Cookies.set("phone", result.phone);
+    Cookies.set("username", result.username, { expires: 0.2 });
+    Cookies.set("id", result._id, { expires: 0.2 });
+    Cookies.set("token", result.token, { expires: 0.2 });
+    Cookies.set("photo", result.photo, { expires: 0.2 });
+    Cookies.set("fullname", result.fullname, { expires: 0.2 });
+    Cookies.set("employed", result.employed, { expires: 0.2 });
+    Cookies.set("email", result.email, { expires: 0.2 });
+    Cookies.set("designation", result.designation, { expires: 0.2 });
+    Cookies.set("department", result.department, { expires: 0.2 });
+    Cookies.set("phone", result.phone, { expires: 0.2 });
     if (response.ok) {
       setIsLoading(false);
       navigate("/");

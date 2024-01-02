@@ -75,7 +75,7 @@ function Billing() {
                 </MDTypography>
               </MDBox>
             </Grid>
-            <Grid item xs={12} md={6} lg={4} sx={{ ml: "auto" }}>
+            <Grid item xs={12} md={6} lg={3} sx={{ ml: "auto" }}>
               <MDTypography variant="button" color="text" fontWeight="regular">
                 Dark Mode
               </MDTypography>
@@ -100,7 +100,7 @@ function Billing() {
         >
           <MDBox lineHeight={1} textAlign="left" style={{ marginTop: "1%" }}>
             <MDTypography display="block" fontSize="20px" variant="h5" fontWeight="medium">
-              User Information
+              Basic Information
             </MDTypography>
             {/* <MDTypography variant="caption">Mandatory informations</MDTypography> */}
           </MDBox>
@@ -165,6 +165,54 @@ function Billing() {
             <MDBox style={{ marginTop: "4%" }} textAlign="right ">
               <MDButton variant="gradient" color="dark" size="large">
                 Save
+              </MDButton>
+              &nbsp;&nbsp;
+            </MDBox>
+          </MDBox>
+        </MDBox>
+      </Card>
+      <Card
+        sx={{
+          position: "relative",
+          mt: 5,
+          mx: 3,
+          py: 2,
+          px: 2,
+        }}
+      >
+        <MDBox
+          sx={{
+            mx: 3,
+          }}
+        >
+          <MDBox lineHeight={1} textAlign="left" style={{ marginTop: "1%" }}>
+            <MDTypography display="block" fontSize="20px" variant="h5" fontWeight="medium">
+              Change Password
+            </MDTypography>
+            {/* <MDTypography variant="caption">Mandatory informations</MDTypography> */}
+          </MDBox>
+          <MDBox style={{ marginTop: "2%" }}>
+            <MDBox>
+              <MDBox>
+                &nbsp;
+                <MDInput variant="outlined" label="Current Password" style={{ width: "100%" }} />
+              </MDBox>
+              <MDBox>
+                &nbsp;
+                <MDInput variant="outlined" label="New Password" style={{ width: "100%" }} />
+              </MDBox>
+              <MDBox>
+                &nbsp;
+                <MDInput
+                  variant="outlined"
+                  label="Confirm New Password"
+                  style={{ width: "100%" }}
+                />
+              </MDBox>
+            </MDBox>
+            <MDBox style={{ marginTop: "4%" }} textAlign="right ">
+              <MDButton variant="gradient" color="dark" size="small">
+                Update Password
               </MDButton>
               &nbsp;&nbsp;
             </MDBox>

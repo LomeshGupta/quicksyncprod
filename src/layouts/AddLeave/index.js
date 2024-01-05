@@ -195,6 +195,8 @@ function AddLeave() {
                           /> */}
                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                           <MDInput
+                            type="number"
+                            InputProps={{ inputProps: { min: 0, max: 13 } }}
                             variant="standard"
                             label="Privilege Leave (PL)"
                             style={{ width: "45%" }}
@@ -205,6 +207,8 @@ function AddLeave() {
                         <MDBox>
                           &nbsp;
                           <MDInput
+                            type="number"
+                            InputProps={{ inputProps: { min: 0, max: 13 } }}
                             variant="standard"
                             label="Earned Leave (EL)"
                             style={{ width: "45%", marginTop: "4%" }}
@@ -213,6 +217,8 @@ function AddLeave() {
                           />
                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                           <MDInput
+                            type="number"
+                            InputProps={{ inputProps: { min: 0, max: 13 } }}
                             variant="standard"
                             label="Casual Leave (CL)"
                             style={{ width: "45%", marginTop: "4%" }}
@@ -223,8 +229,9 @@ function AddLeave() {
                         <MDBox>
                           &nbsp;
                           <MDInput
+                            type="number"
+                            InputProps={{ inputProps: { min: 0, max: 13 } }}
                             variant="standard"
-                            type="text"
                             label="Annual Leave (AL)"
                             style={{ width: "45%", marginTop: "4%" }}
                             // onChange={(e) => setData({ ...data, password: e.target.value })}
@@ -232,6 +239,8 @@ function AddLeave() {
                           />
                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                           <MDInput
+                            type="number"
+                            InputProps={{ inputProps: { min: 0, max: 13 } }}
                             variant="standard"
                             label="Comp Off"
                             style={{ width: "45%", marginTop: "4%" }}

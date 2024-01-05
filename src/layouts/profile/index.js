@@ -65,31 +65,31 @@ function Overview() {
               <Divider orientation="vertical" sx={{ ml: -2, mr: 1 }} />
               <ProfileInfoCard
                 title="profile information"
-                description="Hi, If you can’t decide, the answer is no. If two equally difficult paths, choose the one more painful in the short term (pain avoidance is creating an illusion of equality)."
+                description={Cookies.get("bio")}
                 info={{
                   fullName: Cookies.get("fullname"),
                   mobile: "+91-" + Cookies.get("phone"),
                   email: Cookies.get("email"),
-                  location: "INDIA",
+                  location: Cookies.get("state") + ", " + Cookies.get("pincode"), //india
                 }}
                 social={[
                   {
-                    link: "https://www.facebook.com/",
+                    link: Cookies.get("facebook"),
                     icon: <FacebookIcon />,
                     color: "facebook",
                   },
                   {
-                    link: "https://twitter.com/",
+                    link: Cookies.get("twitter"),
                     icon: <TwitterIcon />,
                     color: "twitter",
                   },
                   {
-                    link: "https://www.instagram.com/",
+                    link: Cookies.get("insta"),
                     icon: <InstagramIcon />,
                     color: "instagram",
                   },
                 ]}
-                action={{ route: "", tooltip: "Edit Profile" }}
+                action={{ route: "/editprofile", tooltip: "Edit Profile" }}
                 shadow={false}
               />
               <Divider orientation="vertical" sx={{ mx: 0 }} />

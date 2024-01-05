@@ -77,6 +77,16 @@ function Basic() {
     Cookies.set("designation", result.designation, { expires: 0.2 });
     Cookies.set("department", result.department, { expires: 0.2 });
     Cookies.set("phone", result.phone, { expires: 0.2 });
+    Cookies.set("address1", result.address1, { expires: 0.2 });
+    Cookies.set("address2", result.address2, { expires: 0.2 });
+    Cookies.set("city", result.city, { expires: 0.2 });
+    Cookies.set("state", result.state, { expires: 0.2 });
+    Cookies.set("pincode", result.pincode, { expires: 0.2 });
+    Cookies.set("insta", result.insta, { expires: 0.2 });
+    Cookies.set("facebook", result.facebook, { expires: 0.2 });
+    Cookies.set("twitter", result.twitter, { expires: 0.2 });
+    Cookies.set("bio", result.bio, { expires: 0.2 });
+
     if (response.ok) {
       setIsLoading(false);
       navigate("/");

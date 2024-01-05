@@ -46,6 +46,7 @@ import Notifications from "layouts/notifications";
 import Profile from "layouts/profile";
 import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
+import AddLeave from "layouts/AddLeave";
 
 // @mui icons
 import Icon from "@mui/material/Icon";
@@ -86,6 +87,14 @@ const routes = [
     //     component: <Users />,
     //   },
     // ],
+  },
+  {
+    type: "collapse",
+    name: "Add Leave",
+    key: "AddLeave",
+    icon: <Icon fontSize="small">Add</Icon>,
+    route: "/AddLeave",
+    component: <AddLeave />,
   },
   {
     type: "route",

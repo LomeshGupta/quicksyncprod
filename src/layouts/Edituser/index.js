@@ -216,6 +216,7 @@ function Edituser() {
                 onChange={(e) => setData2({ ...data2, username: e.target.value })}
                 required
                 defaultValue={Cookies.get("username")}
+                // error={true}
               />
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <MDInput

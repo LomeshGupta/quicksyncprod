@@ -92,7 +92,7 @@ const routes = [
     type: "collapse",
     name: "Add Leave",
     key: "AddLeave",
-    icon: <Icon fontSize="small">Add</Icon>,
+    icon: <Icon fontSize="small">add_box</Icon>,
     route: "/AddLeave",
     component: <AddLeave />,
   },

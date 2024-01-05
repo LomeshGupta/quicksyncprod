@@ -169,18 +169,19 @@ function AddLeave() {
                               // value={age}
                               label="Username"
                             >
-                              <MenuItem value="">
-                                <em>None</em>
-                              </MenuItem>
-                              {Array.isArray(data)
-                                ? data.map((user, index) => {
-                                    return (
-                                      <MenuItem key={index} value={user.username}>
-                                        {user.username}
-                                      </MenuItem>
-                                    );
-                                  })
-                                : null}
+                              {Array.isArray(data) ? (
+                                data.map((user, index) => {
+                                  return (
+                                    <MenuItem key={index} value={user.username}>
+                                      {user.username}
+                                    </MenuItem>
+                                  );
+                                })
+                              ) : (
+                                <MenuItem value="">
+                                  <em>None</em>
+                                </MenuItem>
+                              )}
                             </Select>
                           </FormControl>
                           {/* <MDInput

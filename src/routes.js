@@ -47,6 +47,7 @@ import Profile from "layouts/profile";
 import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
 import AddLeave from "layouts/AddLeave";
+import ApplyLeave from "layouts/ApplyLeave";
 
 // @mui icons
 import Icon from "@mui/material/Icon";
@@ -95,6 +96,15 @@ const routes = [
     icon: <Icon fontSize="small">add_box</Icon>,
     route: "/AddLeave",
     component: <AddLeave />,
+  },
+  ,
+  {
+    type: "collapse",
+    name: "Apply Leave",
+    key: "ApplyLeave",
+    icon: <Icon fontSize="small">padding</Icon>,
+    route: "/ApplyLeave",
+    component: <ApplyLeave />,
   },
   {
     type: "route",

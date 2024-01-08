@@ -264,6 +264,18 @@ function DashboardNavbar({ absolute, light, isMini }) {
               >
                 <Icon sx={iconsStyle}>notifications</Icon>
               </IconButton>
+              <IconButton
+                size="small"
+                disableRipple
+                color="inherit"
+                sx={navbarIconButton}
+                aria-controls="notification-menu"
+                aria-haspopup="true"
+                variant="contained"
+                onClick={handleDarkMode}
+              >
+                <Icon sx={iconsStyle}>light_mode</Icon>
+              </IconButton>
               {renderMenu()}
               <IconButton
                 size="small"

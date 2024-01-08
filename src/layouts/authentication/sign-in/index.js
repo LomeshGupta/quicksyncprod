@@ -67,27 +67,27 @@ function Basic() {
     const result = await response.json();
     console.log(result);
     // setIsLoading(false);
-    Cookies.set("username", result.username, { expires: 0.2 });
-    Cookies.set("id", result._id, { expires: 0.2 });
-    Cookies.set("token", result.token, { expires: 0.2 });
-    Cookies.set("photo", result.photo, { expires: 0.2 });
-    Cookies.set("fullname", result.fullname, { expires: 0.2 });
-    Cookies.set("employed", result.employed, { expires: 0.2 });
-    Cookies.set("email", result.email, { expires: 0.2 });
-    Cookies.set("designation", result.designation, { expires: 0.2 });
-    Cookies.set("department", result.department, { expires: 0.2 });
-    Cookies.set("phone", result.phone, { expires: 0.2 });
-    Cookies.set("address1", result.address1, { expires: 0.2 });
-    Cookies.set("address2", result.address2, { expires: 0.2 });
-    Cookies.set("city", result.city, { expires: 0.2 });
-    Cookies.set("state", result.state, { expires: 0.2 });
-    Cookies.set("pincode", result.pincode, { expires: 0.2 });
-    Cookies.set("insta", result.insta, { expires: 0.2 });
-    Cookies.set("facebook", result.facebook, { expires: 0.2 });
-    Cookies.set("twitter", result.twitter, { expires: 0.2 });
-    Cookies.set("bio", result.bio, { expires: 0.2 });
 
     if (response.ok) {
+      Cookies.set("username", result.username, { expires: 0.2 });
+      Cookies.set("id", result._id, { expires: 0.2 });
+      Cookies.set("token", result.token, { expires: 0.2 });
+      Cookies.set("photo", result.photo, { expires: 0.2 });
+      Cookies.set("fullname", result.fullname, { expires: 0.2 });
+      Cookies.set("employed", result.employed, { expires: 0.2 });
+      Cookies.set("email", result.email, { expires: 0.2 });
+      Cookies.set("designation", result.designation, { expires: 0.2 });
+      Cookies.set("department", result.department, { expires: 0.2 });
+      Cookies.set("phone", result.phone, { expires: 0.2 });
+      Cookies.set("address1", result.address1, { expires: 0.2 });
+      Cookies.set("address2", result.address2, { expires: 0.2 });
+      Cookies.set("city", result.city, { expires: 0.2 });
+      Cookies.set("state", result.state, { expires: 0.2 });
+      Cookies.set("pincode", result.pincode, { expires: 0.2 });
+      Cookies.set("insta", result.insta, { expires: 0.2 });
+      Cookies.set("facebook", result.facebook, { expires: 0.2 });
+      Cookies.set("twitter", result.twitter, { expires: 0.2 });
+      Cookies.set("bio", result.bio, { expires: 0.2 });
       setIsLoading(false);
       navigate("/");
     } else {

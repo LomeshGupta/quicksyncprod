@@ -263,7 +263,7 @@ function ApplyLeave() {
           </Row>
         </Container>
       </div>
-      <Container style={{ marginTop: "2%" }}>
+      {/* <Container style={{ marginTop: "2%" }}>
         <Card
           sx={{
             position: "relative",
@@ -283,10 +283,10 @@ function ApplyLeave() {
                 Basic Information
               </MDTypography>
               {/* <MDTypography variant="caption">Mandatory informations</MDTypography> */}
-            </MDBox>
-          </MDBox>
-        </Card>
-      </Container>
+      {/* </MDBox> */}
+      {/* </MDBox> */}
+      {/* </Card> */}
+      {/* </Container> */}
     </DashboardLayout>
   );
 }

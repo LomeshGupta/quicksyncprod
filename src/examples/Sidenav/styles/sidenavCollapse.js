@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 */
 function collapseItem(theme, ownerState) {
   const { palette, transitions, breakpoints, boxShadows, borders, functions } = theme;
-  const { active, transparentSidenav, whiteSidenav, darkMode, sidenavColor } = ownerState;
+  const { type, active, transparentSidenav, whiteSidenav, darkMode, sidenavColor } = ownerState;
 
   const { white, transparent, dark, grey, gradients } = palette;
   const { md } = boxShadows;
@@ -46,6 +46,20 @@ function collapseItem(theme, ownerState) {
       }),
     },
 
+    "&:hover, &:focus": {
+      backgroundColor: () => {
+        let backgroundValue;
+
+        if (!active) {
+          backgroundValue =
+            transparentSidenav && !darkMode
+              ? grey[300]
+              : rgba(whiteSidenav ? grey[400] : white.main, 0.2);
+        }
+
+        return backgroundValue;
+      },
+    },
     "&:hover, &:focus": {
       backgroundColor: () => {
         let backgroundValue;

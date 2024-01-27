@@ -53,6 +53,8 @@ import ApplyLeave from "layouts/ApplyLeave";
 import Icon from "@mui/material/Icon";
 import { Navigate } from "react-router-dom";
 import Bill from "layouts/billing/components/Bill";
+import { boolean } from "yup";
+const user = boolean;
 
 const routes = [
   {
@@ -64,47 +66,78 @@ const routes = [
     component: <Dashboard />,
   },
   {
-    type: "collapse",
+    type: "route",
     name: "Users",
     key: "users",
     icon: <Icon fontSize="small">table_view</Icon>,
     route: "/users",
     component: <Users />,
-    // child: [
-    //   {
-    //     type: "route",
-    //     name: "additem",
-    //     key: "additem",
-    //     icon: <Icon fontSize="small">route</Icon>,
-    //     route: "/additem",
-    //     component: <Adduser />,
-    //   },
-    //   {
-    //     type: "collapse",
-    //     name: "Users",
-    //     key: "users",
-    //     icon: <Icon fontSize="small">table_view</Icon>,
-    //     route: "/users",
-    //     component: <Users />,
-    //   },
-    // ],
   },
   {
     type: "collapse",
+    name: "Users",
+    key: "user",
+    icon: <Icon fontSize="small">table_view</Icon>,
+    // route: "/users",
+    // component: <Users />,
+    child: [
+      {
+        type: "route",
+        name: "Add User",
+        key: "additem",
+        icon: <Icon fontSize="small">route</Icon>,
+        route: "/additem",
+        component: <Adduser />,
+      },
+      {
+        type: "collapse",
+        name: "Users List",
+        key: "users",
+        icon: <Icon fontSize="small">table_view</Icon>,
+        route: "/users",
+        component: <Users />,
+      },
+    ],
+  },
+  {
+    type: "route",
     name: "Add Leave",
     key: "AddLeave",
     icon: <Icon fontSize="small">add_box</Icon>,
     route: "/AddLeave",
     component: <AddLeave />,
   },
-  ,
   {
-    type: "collapse",
+    type: "route",
     name: "Apply Leave",
     key: "ApplyLeave",
     icon: <Icon fontSize="small">padding</Icon>,
     route: "/ApplyLeave",
     component: <ApplyLeave />,
+  },
+  {
+    type: "collapse",
+    name: "Leave Management",
+    key: "ApplyLeave",
+    icon: <Icon fontSize="small">padding</Icon>,
+    child: [
+      {
+        type: "collapse",
+        name: "Add Leave",
+        key: "AddLeave",
+        icon: <Icon fontSize="small">add_box</Icon>,
+        route: "/AddLeave",
+        component: <AddLeave />,
+      },
+      {
+        type: "collapse",
+        name: "Apply Leave",
+        key: "ApplyLeave",
+        icon: <Icon fontSize="small">padding</Icon>,
+        route: "/ApplyLeave",
+        component: <ApplyLeave />,
+      },
+    ],
   },
   {
     type: "route",

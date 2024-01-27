@@ -53,7 +53,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
   const { miniSidenav, transparentSidenav, whiteSidenav, darkMode, sidenavColor } = controller;
   const location = useLocation();
   const collapseName = location.pathname.replace("/", "");
-  const [show, setshow] = useState(false);
+  const [show, setshow] = useState({});
 
   let textColor = "white";
 
@@ -63,26 +63,38 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
     textColor = "inherit";
   }
 
-  const opendraw = () => {
-    if (!show) {
-      setshow(true);
-    } else {
-      setshow(false);
-    }
+  const opendraw = (menu) => {
+    setshow((prevState) => {
+      const updatedStates = {};
+      // Close all other menus
+      Object.keys(prevState).forEach((key) => {
+        updatedStates[key] = key === menu ? !prevState[key] : false;
+      });
+      return {
+        ...prevState,
+        ...updatedStates,
+      };
+    });
   };
 
-  const hadnleactive = (key) => {
-    if (key == collapseName) {
-      return true;
-    } else {
-      return false;
-    }
-  };
+  // const toggleDropdown = (menu) => {
+  //   setshow((prevState) => {
+  //     const updatedStates = {};
+  //     // Close all other menus
+  //     Object.keys(prevState).forEach((key) => {
+  //       updatedStates[key] = key === menu ? !prevState[key] : false;
+  //     });
+  //     return {
+  //       ...prevState,
+  //       ...updatedStates,
+  //     };
+  //   });
+  // };
 
   const closeSidenav = () => setMiniSidenav(dispatch, true);
 
   useEffect(() => {
-    setshow(false);
+    // setshow(false);
     // A function that sets the mini state of the sidenav.
     function handleMiniSidenav() {
       setMiniSidenav(dispatch, window.innerWidth < 1200);
@@ -113,30 +125,32 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
             <SidenavCollapse
               name={name}
               icon={icon}
-              active={key === collapseName}
+              type={type}
+              active={show[key]}
+              show={show[key]}
               noCollapse={noCollapse}
-              onClick={opendraw}
+              onClick={() => opendraw(key)}
             />
-            <Collapse in={show} timeout="auto">
-              <NavLink key={child[0].key} to={child[0].route}>
-                <SidenavCollapse
-                  name={child[0].name}
-                  icon={child[0].icon}
-                  active={child[0].key === collapseName}
-                />
-              </NavLink>
-              <NavLink key={child[1].key} to={child[1].route}>
-                <SidenavCollapse
-                  name={child[1].name}
-                  icon={child[1].icon}
-                  active={child[1].key === collapseName}
-                />
-              </NavLink>
+            <Collapse in={show[key]} timeout="auto">
+              {child.map((item, index) => (
+                <NavLink key={child[index].key} to={child[index].route}>
+                  <SidenavCollapse
+                    name={child[index].name}
+                    icon={child[index].icon}
+                    active={child[index].key === collapseName}
+                  />
+                </NavLink>
+              ))}
             </Collapse>
           </List>
         ) : (
           <NavLink key={key} to={route}>
-            <SidenavCollapse name={name} icon={icon} active={key === collapseName} />
+            <SidenavCollapse
+              name={name}
+              icon={icon}
+              active={key === collapseName}
+              onClick={() => opendraw(name)}
+            />
           </NavLink>
         );
       } else if (type === "title") {

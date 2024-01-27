@@ -22,6 +22,8 @@ import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Icon from "@mui/material/Icon";
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 // import { Collapse } from "react-collapse";
 
 // QuickSync Pro React components
@@ -37,8 +39,9 @@ import {
 
 // QuickSync Pro React context
 import { useMaterialUIController } from "context";
+import { propTypes } from "react-bootstrap/esm/Image";
 
-function SidenavCollapse({ icon, name, active, ...rest }) {
+function SidenavCollapse({ icon, name, active, type, show, ...rest }) {
   const [controller] = useMaterialUIController();
   const { miniSidenav, transparentSidenav, whiteSidenav, darkMode, sidenavColor } = controller;
 
@@ -79,6 +82,13 @@ function SidenavCollapse({ icon, name, active, ...rest }) {
             })
           }
         />
+        <ListItemIcon
+          sx={(theme) =>
+            collapseIconBox(theme, { transparentSidenav, whiteSidenav, darkMode, active })
+          }
+        >
+          {type ? show ? <ArrowDropUpIcon /> : <ArrowDropDownIcon /> : null}
+        </ListItemIcon>
       </MDBox>
     </ListItem>
   );
@@ -94,6 +104,8 @@ SidenavCollapse.propTypes = {
   icon: PropTypes.node.isRequired,
   name: PropTypes.string.isRequired,
   active: PropTypes.bool,
+  type: propTypes.string,
+  show: propTypes.bool,
 };
 
 export default SidenavCollapse;

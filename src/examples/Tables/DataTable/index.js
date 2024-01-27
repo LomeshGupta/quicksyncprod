@@ -21,7 +21,14 @@ import { DownloadTableExcel } from "react-export-table-to-excel";
 import PropTypes from "prop-types";
 
 // react-table components
-import { useTable, usePagination, useGlobalFilter, useAsyncDebounce, useSortBy } from "react-table";
+import {
+  useTable,
+  usePagination,
+  useGlobalFilter,
+  useAsyncDebounce,
+  useSortBy,
+  useRowSelect,
+} from "react-table";
 
 // @mui material components
 import Table from "@mui/material/Table";
@@ -61,7 +68,8 @@ function DataTable({
     { columns, data, initialState: { pageIndex: 0 } },
     useGlobalFilter,
     useSortBy,
-    usePagination
+    usePagination,
+    useRowSelect
   );
 
   const tableRef = useRef(null);

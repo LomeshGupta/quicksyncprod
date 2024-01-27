@@ -22,6 +22,7 @@ import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Cloudinary } from "@cloudinary/url-gen";
+import Grid from "@mui/material/Grid";
 
 // QuickSync Pro React components
 import MDBox from "components/MDBox";
@@ -263,30 +264,86 @@ function ApplyLeave() {
           </Row>
         </Container>
       </div>
-      {/* <Container style={{ marginTop: "2%" }}>
-        <Card
-          sx={{
-            position: "relative",
-            mt: 5,
-            mx: 3,
-            py: 2,
-            px: 2,
-          }}
-        >
-          <MDBox
-            sx={{
-              mx: 3,
-            }}
-          >
-            <MDBox lineHeight={1} textAlign="left" style={{ marginTop: "1%" }}>
-              <MDTypography display="block" fontSize="20px" variant="h5" fontWeight="medium">
-                Basic Information
-              </MDTypography>
-              {/* <MDTypography variant="caption">Mandatory informations</MDTypography> */}
-      {/* </MDBox> */}
-      {/* </MDBox> */}
-      {/* </Card> */}
-      {/* </Container> */}
+      <div>
+        <Container style={{ marginTop: "3%" }}>
+          <Row className="d-flex justify-content-center align-items-center">
+            <Col md={8} style={{ borderRadius: "40%" }}>
+              {/* <MDBox
+                color="Transparent"
+                bgColor="Transparent"
+                variant="gradient"
+                borderRadius="lg"
+                shadow="lg"
+                opacity={2}
+                p={2}
+              > */}
+              <Grid container bgColor="Transparent">
+                <MDBox>
+                  <MDTypography
+                    display="block"
+                    variant="caption"
+                    color="text"
+                    fontWeight="bold"
+                    fontSize="15px"
+                  >
+                    Available Leaves
+                  </MDTypography>
+                  <MDTypography
+                    display="block"
+                    variant="caption"
+                    color="text"
+                    fontWeight="bold"
+                    fontSize="10px"
+                  >
+                    0 Days
+                  </MDTypography>
+                </MDBox>
+                <MDBox style={{ marginLeft: "25%" }}>
+                  <MDTypography
+                    display="block"
+                    variant="caption"
+                    color="text"
+                    fontWeight="bold"
+                    fontSize="15px"
+                  >
+                    Applying For
+                  </MDTypography>
+                  <MDTypography
+                    display="block"
+                    variant="caption"
+                    color="text"
+                    fontWeight="bold"
+                    fontSize="10px"
+                  >
+                    0 Days
+                  </MDTypography>
+                </MDBox>
+                <MDBox style={{ marginLeft: "25%" }}>
+                  <MDTypography
+                    display="block"
+                    variant="caption"
+                    color="text"
+                    fontWeight="bold"
+                    fontSize="15px"
+                  >
+                    Remaining Leaves
+                  </MDTypography>
+                  <MDTypography
+                    display="block"
+                    variant="caption"
+                    color="text"
+                    fontWeight="bold"
+                    fontSize="10px"
+                  >
+                    0 Days
+                  </MDTypography>
+                </MDBox>
+              </Grid>
+              {/* </MDBox> */}
+            </Col>
+          </Row>
+        </Container>
+      </div>
     </DashboardLayout>
   );
 }

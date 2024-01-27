@@ -37,10 +37,14 @@ import breakpoints from "assets/theme/base/breakpoints";
 // Images
 import burceMars from "assets/images/bruce-mars.jpg";
 import backgroundImage from "assets/images/bg-profile.jpeg";
+import { Lightbox } from "react-modal-image";
 
 function Header({ children }) {
   const [tabsOrientation, setTabsOrientation] = useState("horizontal");
   const [tabValue, setTabValue] = useState(0);
+  const [openImg, setImg] = useState(false);
+  const closeLightbox = () => setImg(false);
+  const OpenLightbox = () => setImg(true);
 
   useEffect(() => {
     // A function that sets the orientation state of the tabs.
@@ -94,7 +98,21 @@ function Header({ children }) {
       >
         <Grid container spacing={3} alignItems="center">
           <Grid item>
-            <MDAvatar src={Cookies.get("photo")} alt="profile-image" size="xl" shadow="sm" />
+            <MDAvatar
+              src={Cookies.get("photo")}
+              alt="profile-image"
+              size="xl"
+              shadow="sm"
+              onClick={OpenLightbox}
+            />
+            {openImg ? (
+              <Lightbox
+                large={Cookies.get("photo")}
+                hideZoom
+                hideDownload
+                onClose={closeLightbox}
+              />
+            ) : null}
           </Grid>
           <Grid item>
             <MDBox height="100%" mt={0.5} lineHeight={1}>

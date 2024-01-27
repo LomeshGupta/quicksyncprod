@@ -53,6 +53,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
   const { miniSidenav, transparentSidenav, whiteSidenav, darkMode, sidenavColor } = controller;
   const location = useLocation();
   const collapseName = location.pathname.replace("/", "");
+
   const [show, setshow] = useState({});
 
   let textColor = "white";
@@ -71,7 +72,6 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
         updatedStates[key] = key === menu ? !prevState[key] : false;
       });
       return {
-        ...prevState,
         ...updatedStates,
       };
     });
@@ -94,6 +94,14 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
   const closeSidenav = () => setMiniSidenav(dispatch, true);
 
   useEffect(() => {
+    routes.map(({ type, name, icon, child, title, noCollapse, key, href, route }) => {
+      if (type === "collapse") {
+        setshow((prevState) => ({
+          ...prevState,
+          [key]: prevState[key],
+        }));
+      }
+    });
     // setshow(false);
     // A function that sets the mini state of the sidenav.
     function handleMiniSidenav() {
@@ -126,7 +134,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
               name={name}
               icon={icon}
               type={type}
-              active={show[key]}
+              // active={show[key]}
               show={show[key]}
               noCollapse={noCollapse}
               onClick={() => opendraw(key)}
@@ -149,7 +157,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
               name={name}
               icon={icon}
               active={key === collapseName}
-              onClick={() => opendraw(name)}
+              onClick={() => opendraw(key)}
             />
           </NavLink>
         );

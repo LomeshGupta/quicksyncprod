@@ -53,17 +53,51 @@ import ApplyLeave from "layouts/ApplyLeave";
 import Icon from "@mui/material/Icon";
 import { Navigate } from "react-router-dom";
 import Bill from "layouts/billing/components/Bill";
-import { boolean } from "yup";
-const user = boolean;
+import Cookies from "js-cookie";
+import MDAvatar from "components/MDAvatar";
 
 const routes = [
   {
     type: "collapse",
-    name: "Dashboard",
+    name: Cookies.get("fullname"),
+    key: "profile",
+    icon: <MDAvatar src={Cookies.get("photo")} alt="profile-image" size="s" shadow="sm" />,
+    child: [
+      {
+        type: "route",
+        name: "Profile",
+        key: "profile",
+        icon: <Icon fontSize="small">person</Icon>,
+        route: "/profile",
+        component: <Profile />,
+      },
+      {
+        type: "route",
+        name: "Settings",
+        key: "editprofile",
+        icon: <Icon fontSize="small">settings</Icon>,
+        route: "/editprofile",
+        component: <Edit />,
+      },
+    ],
+  },
+  {
+    type: "divider",
+  },
+  {
+    type: "collapse",
+    name: "Home",
     key: "dashboard",
     icon: <Icon fontSize="small">dashboard</Icon>,
     route: "/dashboard",
     component: <Dashboard />,
+  },
+  {
+    type: "divider",
+  },
+  {
+    type: "title",
+    title: "HR Module",
   },
   {
     type: "route",
@@ -117,7 +151,7 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Leave Management",
+    name: "Leaves",
     key: "ApplyLeave",
     icon: <Icon fontSize="small">padding</Icon>,
     child: [
@@ -138,6 +172,9 @@ const routes = [
         component: <ApplyLeave />,
       },
     ],
+  },
+  {
+    type: "divider",
   },
   {
     type: "route",

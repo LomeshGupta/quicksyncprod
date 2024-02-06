@@ -49,34 +49,45 @@ import InputLabel from "@mui/material/InputLabel";
 function ApplyLeave() {
   const [controller] = useMaterialUIController();
   const { darkMode } = controller;
-  const [stage, setstage] = useState(null);
-  const [data, setData] = useState([]);
+  // const [stage, setstage] = useState(null);
+  // const [data, setData] = useState([]);
+  const [selectedOption, setSelectedOption] = useState("");
+  const [setbal, setBalance] = useState("0");
   const [loading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const url = "https://quicksync.onrender.com/api/users/getusers";
 
-  //   const nextok = () => setstage(stage + 1);
-  //   const prev = () => setstage(stage - 1);
+  const handleSubmit = async (e) => {
+    setSelectedOption(e.target.value);
 
-  function preview() {
-    const img = document.getElementById("img");
-    img.src = URL.createObjectURL(event.target.files[0]);
-    const file = event.target.files[0];
-    setImage(file);
-  }
+    const data1 = {
+      username: Cookies.get("username"),
+      type: e.target.value,
+      // Add other fields as needed
+    };
 
-  const fetchInfo = () => {
-    return fetch(url)
-      .then((res) => res.json())
-      .then((d) => {
-        setData(d);
-        setIsLoading(false);
-      })
-      .catch();
+    e.preventDefault();
+    // setIsLoading(true);
+
+    const response = await fetch("https://quicksync.onrender.com/api/leaves/getleavebal", {
+      method: "POST",
+      body: JSON.stringify(data1),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const result = await response.json();
+    console.log(result);
+    setIsLoading(false);
+    if (response.ok) {
+      setBalance(result);
+    } else {
+      toast.error(result.message);
+    }
   };
 
   useEffect(() => {
-    setData({ ...data, _id: Cookies.get("id") });
+    // setData({ ...data, username: Cookies.get("username") });
   }, []);
 
   const inputRef = useRef(null);
@@ -164,7 +175,7 @@ function ApplyLeave() {
                           &nbsp;
                           <FormControl variant="standard" style={{ width: "45%", marginTop: "1%" }}>
                             <InputLabel id="type">Type</InputLabel>
-                            <Select labelId="type" id="type" label="Type">
+                            <Select labelId="type" id="type" label="Type" onChange={handleSubmit}>
                               <MenuItem value="PL">Privilege Leave (PL)</MenuItem>
                               <MenuItem value="EL">Earned Leave (EL)</MenuItem>
                               <MenuItem value="CL">Casual Leave (CL)</MenuItem>
@@ -293,9 +304,9 @@ function ApplyLeave() {
                     variant="caption"
                     color="text"
                     fontWeight="bold"
-                    fontSize="10px"
+                    fontSize="12px"
                   >
-                    0 Days
+                    {setbal} Days
                   </MDTypography>
                 </MDBox>
                 <MDBox style={{ marginLeft: "25%" }}>

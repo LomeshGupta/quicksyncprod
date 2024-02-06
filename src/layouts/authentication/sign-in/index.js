@@ -71,7 +71,6 @@ function Basic() {
     if (response.ok) {
       Cookies.set("username", result.username, { expires: 0.2 });
       Cookies.set("id", result._id, { expires: 0.2 });
-      Cookies.set("token", result.token, { expires: 0.2 });
       Cookies.set("photo", result.photo, { expires: 0.2 });
       Cookies.set("fullname", result.fullname, { expires: 0.2 });
       Cookies.set("employed", result.employed, { expires: 0.2 });
@@ -88,6 +87,7 @@ function Basic() {
       Cookies.set("facebook", result.facebook, { expires: 0.2 });
       Cookies.set("twitter", result.twitter, { expires: 0.2 });
       Cookies.set("bio", result.bio, { expires: 0.2 });
+      Cookies.set("token", result.token, { expires: 0.2 });
       setIsLoading(false);
       navigate("/");
     } else {

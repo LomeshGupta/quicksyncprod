@@ -3,10 +3,10 @@
 * QuickSync Pro React - v2.1.0
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/nextjs-material-dashboard-pro
-* Copyright 2023 QuickSync Pro (https://www.creative-tim.com)
+* Product Page: https://www.quicksyncpro.netlify.app//product/nextjs-material-dashboard-pro
+* Copyright 2023 QuickSync Pro (https://www.quicksyncpro.netlify.app/)
 
-Coded by www.creative-tim.com
+Coded by www.quicksyncpro.netlify.app/
 
  =========================================================
 

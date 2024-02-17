@@ -3,10 +3,10 @@
 * QuickSync Pro  React - v2.2.0
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2023 QuickSync Pro (https://www.creative-tim.com)
+* Product Page: https://www.quicksyncpro.netlify.app//product/material-dashboard-react
+* Copyright 2023 QuickSync Pro (https://www.quicksyncpro.netlify.app/)
 
-Coded by www.creative-tim.com
+Coded by www.quicksyncpro.netlify.app/
 
  =========================================================
 
@@ -17,6 +17,7 @@ import { useMemo } from "react";
 
 // porp-types is a library for typechecking of props
 import PropTypes from "prop-types";
+import Badge from "components/Badge";
 
 // react-chartjs-2 components
 import {
@@ -95,7 +96,7 @@ function RadarChart({ icon, title, description, height, chart }) {
       ) : null}
       {useMemo(
         () => (
-          <MDBox p={6} height={height}>
+          <MDBox p={5} height={height}>
             <Radar data={data} options={options} redraw />
           </MDBox>
         ),

@@ -3,10 +3,10 @@
 * Material Dashboard 2 React - v2.2.0
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2023 QuickSync Pro (https://www.creative-tim.com)
+* Product Page: https://www.quicksyncpro.netlify.app//product/material-dashboard-react
+* Copyright 2023 QuickSync Pro (https://www.quicksyncpro.netlify.app/)
 
-Coded by www.creative-tim.com
+Coded by www.quicksyncpro.netlify.app/
 
  =========================================================
 
@@ -82,9 +82,9 @@ Footer.defaultProps = {
   company: { href: "/", name: "QuickSync Pro" },
   links: [
     { href: "/", name: "QuickSync Pro" },
-    { href: "https://www.creative-tim.com/presentation", name: "About Us" },
-    { href: "https://www.creative-tim.com/blog", name: "Blog" },
-    { href: "https://www.creative-tim.com/license", name: "License" },
+    { href: "https://www.quicksyncpro.netlify.app//presentation", name: "About Us" },
+    { href: "https://www.quicksyncpro.netlify.app//blog", name: "Blog" },
+    { href: "https://www.quicksyncpro.netlify.app//license", name: "License" },
   ],
 };
 

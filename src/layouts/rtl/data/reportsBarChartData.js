@@ -3,10 +3,10 @@
 * Material Dashboard 2 React - v2.2.0
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
+* Product Page: https://www.quicksyncpro.netlify.app//product/material-dashboard-react
+* Copyright 2023 Creative Tim (https://www.quicksyncpro.netlify.app/)
 
-Coded by www.creative-tim.com
+Coded by www.quicksyncpro.netlify.app/
 
  =========================================================
 

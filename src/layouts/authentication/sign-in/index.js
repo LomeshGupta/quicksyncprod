@@ -3,10 +3,10 @@
 * QuickSync Pro React - v2.2.0
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2023 QuickSync Pro (https://www.creative-tim.com)
+* Product Page: https://www.quicksyncpro.netlify.app//product/material-dashboard-react
+* Copyright 2023 QuickSync Pro (https://www.quicksyncpro.netlify.app/)
 
-Coded by www.creative-tim.com
+Coded by www.quicksyncpro.netlify.app/
 
  =========================================================
 
@@ -45,6 +45,7 @@ import BasicLayout from "layouts/authentication/components/BasicLayout";
 
 // Images
 import bgImage from "assets/images/bg-sign-in-basic.jpeg";
+import { Cookie } from "@mui/icons-material";
 
 function Basic() {
   // const [rememberMe, setRememberMe] = useState(false);
@@ -89,7 +90,9 @@ function Basic() {
       Cookies.set("bio", result.bio, { expires: 0.2 });
       Cookies.set("token", result.token, { expires: 0.2 });
       setIsLoading(false);
-      navigate("/");
+      if (Cookies.get("fullname")) {
+        navigate("/");
+      }
     } else {
       setIsLoading(false);
       toast.error(result.message);

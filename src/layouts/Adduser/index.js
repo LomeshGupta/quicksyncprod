@@ -3,10 +3,10 @@
 * QuickSync Pro React - v2.2.0
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2023 QuickSync Pro (https://www.creative-tim.com)
+* Product Page: https://www.quicksyncpro.netlify.app//product/material-dashboard-react
+* Copyright 2023 QuickSync Pro (https://www.quicksyncpro.netlify.app/)
 
-Coded by www.creative-tim.com
+Coded by www.quicksyncpro.netlify.app/
 
  =========================================================
 
@@ -195,6 +195,7 @@ function Adduser() {
                               onChange={(e) => setData({ ...data, username: e.target.value })}
                               defaultValue={data.username ? data.username : null}
                               required
+                              // error={!data.username ? true : false}
                             />
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <MDInput

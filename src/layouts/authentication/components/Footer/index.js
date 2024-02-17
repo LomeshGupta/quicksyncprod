@@ -3,10 +3,10 @@
 * QuickSync Pro React - v2.2.0
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2023 QuickSync Pro (https://www.creative-tim.com)
+* Product Page: https://www.quicksyncpro.netlify.app//product/material-dashboard-react
+* Copyright 2023 QuickSync Pro (https://www.quicksyncpro.netlify.app/)
 
-Coded by www.creative-tim.com
+Coded by www.quicksyncpro.netlify.app/
 
  =========================================================
 
@@ -57,7 +57,7 @@ function Footer({ light }) {
               </Icon>
             </MDBox>
             by
-            <Link href="https://www.creative-tim.com/" target="_blank">
+            <Link href="https://www.quicksyncpro.netlify.app//" target="_blank">
               <MDTypography variant="button" fontWeight="medium" color={light ? "white" : "dark"}>
                 &nbsp;QuickSync Pro&nbsp;
               </MDTypography>
@@ -82,7 +82,7 @@ function Footer({ light }) {
             })}
           >
             <MDBox component="li" pr={2} lineHeight={1}>
-              <Link href="https://www.creative-tim.com/" target="_blank">
+              <Link href="https://www.quicksyncpro.netlify.app//" target="_blank">
                 <MDTypography
                   variant="button"
                   fontWeight="regular"
@@ -93,7 +93,7 @@ function Footer({ light }) {
               </Link>
             </MDBox>
             <MDBox component="li" px={2} lineHeight={1}>
-              <Link href="https://www.creative-tim.com/presentation" target="_blank">
+              <Link href="https://www.quicksyncpro.netlify.app//presentation" target="_blank">
                 <MDTypography
                   variant="button"
                   fontWeight="regular"
@@ -104,7 +104,7 @@ function Footer({ light }) {
               </Link>
             </MDBox>
             <MDBox component="li" px={2} lineHeight={1}>
-              <Link href="https://www.creative-tim.com/blog" target="_blank">
+              <Link href="https://www.quicksyncpro.netlify.app//blog" target="_blank">
                 <MDTypography
                   variant="button"
                   fontWeight="regular"
@@ -115,7 +115,7 @@ function Footer({ light }) {
               </Link>
             </MDBox>
             <MDBox component="li" pl={2} lineHeight={1}>
-              <Link href="https://www.creative-tim.com/license" target="_blank">
+              <Link href="https://www.quicksyncpro.netlify.app//license" target="_blank">
                 <MDTypography
                   variant="button"
                   fontWeight="regular"

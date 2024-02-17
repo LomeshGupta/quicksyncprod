@@ -56,7 +56,6 @@ import Bill from "layouts/billing/components/Bill";
 import Cookies from "js-cookie";
 import MDAvatar from "components/MDAvatar";
 
-
 const routes = [
   {
     type: "collapse",

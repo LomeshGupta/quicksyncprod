@@ -59,11 +59,9 @@ import MDAvatar from "components/MDAvatar";
 const routes = [
   {
     type: "collapse",
-    name: Cookies.get("fullname") ? Cookies.get("fullname") : null,
+    name: "cookie",
     key: "profile",
-    icon: Cookies.get("photo") ? (
-      <MDAvatar src={Cookies.get("photo")} alt="profile-image" size="s" shadow="sm" />
-    ) : null,
+    icon: "cookie",
     child: [
       {
         type: "route",

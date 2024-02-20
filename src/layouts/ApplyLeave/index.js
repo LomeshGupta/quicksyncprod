@@ -366,16 +366,17 @@ function ApplyLeave() {
                                 <MenuItem value="CO">Comp Off</MenuItem>
                               </Select>
                             </FormControl>
-                            {/* <MDInput
-                            id="username"
-                            variant="standard"
-                            label="User Name"
-                            type="text"
-                            style={{ width: "45%" }}
-                            onChange={(e) => setData({ ...data, username: e.target.value })}
-                            defaultValue={data.username ? data.username : null}
-                            required
-                          /> */}
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <MDInput
+                              id="applyingfor"
+                              variant="standard"
+                              label="Applying For"
+                              type="text"
+                              style={{ width: "45%" }}
+                              value={numberOfDays}
+                              defaultValue={numberOfDays}
+                              required
+                            />
                             {/* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                           <MDInput
                             type="number"

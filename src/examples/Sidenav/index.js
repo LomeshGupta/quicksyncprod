@@ -20,12 +20,14 @@ import { useLocation, NavLink } from "react-router-dom";
 
 // prop-types is a library for typechecking of props.
 import PropTypes from "prop-types";
+import MDAvatar from "components/MDAvatar";
 
 // @mui material components
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import Link from "@mui/material/Link";
 import Icon from "@mui/material/Icon";
+import Cookies from "js-cookie";
 
 // QuickSync Pro React components
 import MDBox from "components/MDBox";
@@ -131,8 +133,15 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
         returnValue = child ? (
           <List>
             <SidenavCollapse
-              name={name}
-              icon={icon}
+              name={name === "cookie" ? Cookies.get("fullname") : name}
+              // <MDAvatar src={Cookies.get("photo")} alt="profile-image" size="s" shadow="sm" />
+              icon={
+                icon === "cookie" ? (
+                  <MDAvatar src={Cookies.get("photo")} alt="profile-image" size="s" shadow="sm" />
+                ) : (
+                  icon
+                )
+              }
               type={type}
               // active={show[key]}
               show={show[key]}

@@ -55,6 +55,7 @@ import { Navigate } from "react-router-dom";
 import Bill from "layouts/billing/components/Bill";
 import Cookies from "js-cookie";
 import MDAvatar from "components/MDAvatar";
+import Leavecalender from "layouts/Leavecalender";
 
 const routes = [
   {
@@ -171,10 +172,26 @@ const routes = [
         route: "/ApplyLeave",
         component: <ApplyLeave />,
       },
+      {
+        type: "collapse",
+        name: "Leave Calender",
+        key: "leavecalender",
+        icon: <Icon fontSize="small">padding</Icon>,
+        route: "/leavecalender",
+        component: <Leavecalender />,
+      },
     ],
   },
   {
     type: "divider",
+  },
+  {
+    type: "route",
+    name: "Leave Calender",
+    key: "leavecalender",
+    icon: <Icon fontSize="small">padding</Icon>,
+    route: "/leavecalender",
+    component: <Leavecalender />,
   },
   {
     type: "route",
